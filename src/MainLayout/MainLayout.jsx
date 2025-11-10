@@ -5,12 +5,14 @@ import Footer from '../Components/Footer';
 
 const MainLayout = () => {
     return (
-        <div className='container mx-auto'>
-            <Navbar/>
-            <Outlet/>
-            <Footer/>
+        <div >
+            <Navbar />
+            <div className='min-h-screen'>
+                <Outlet />
+            </div>
+            <Footer />
         </div>
     );
 };
 
-export default MainLayout;<Navbar/>
+export default MainLayout; <Navbar />
