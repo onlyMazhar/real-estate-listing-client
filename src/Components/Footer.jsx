@@ -7,7 +7,7 @@ import Container from './Container';
 const Footer = () => {
     return (
         <>
-            <div className='bg-secondary'>
+            <footer className='bg-secondary mt-15'>
                 <Container>
 
 
@@ -29,7 +29,7 @@ const Footer = () => {
                     <div className='w-[80%] h-0.5 bg-gray-700  mx-auto'></div>
 
                     {/* Links Section */}
-                    <footer className="footer  sm:footer-horizontal bg-secondary text-white  p-10">
+                    <div className="footer  sm:footer-horizontal bg-secondary text-white  p-10">
 
                         <nav>
                             <h6 className="footer-title">Popular Search</h6>
@@ -71,7 +71,7 @@ const Footer = () => {
                                 </div>
                             </fieldset>
                         </form>
-                    </footer>
+                    </div>
                     {/* Devider */}
                     <div className='w-[80%] h-0.5 bg-gray-700  mx-auto'></div>
                     {/* Copy right Section */}
@@ -88,7 +88,7 @@ const Footer = () => {
                     </div>
                 </Container>
 
-            </div>
+            </footer>
 
         </>
     );

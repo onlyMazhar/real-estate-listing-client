@@ -19,5 +19,11 @@ body {
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   font-style: normal;
+  background-color: #F3F4F6;
+}
+
+nav a.active {
+
+ border-bottom: 4px solid #FFAC12;
 }
 

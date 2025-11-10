@@ -4,15 +4,10 @@ import logo from '../assets/logo-colored.png'
 import Container from './Container';
 
 const Navbar = () => {
-    const links = <>
-        <li> <NavLink to={'/'}> Home </NavLink></li>
-        <li> <NavLink> All Properties</NavLink> </li>
-        <li> <NavLink> Add Properties</NavLink> </li>
 
-    </>
     return (
         <Container>
-            <div className="navbar relative bg-transparent lg:mt-3 ">
+            <div className="navbar relative top-0 bg-transparent lg:pt-5 z-100">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -21,14 +16,20 @@ const Navbar = () => {
                         <nav
                             tabIndex="-1"
                             className="menu text-white menu-sm dropdown-content rounded-box z-1 mt- w-44 p-2 bg-white/30 backdrop-blur-sm">
-                            {links}
+                            <NavLink to={'/'}>Home</NavLink>
+                            <NavLink> All Properties</NavLink>
+                            <NavLink> Add Properties</NavLink>
+
                         </nav>
                     </div>
                     <a className=" md:pl-2 lg:pl-2 text-xl "><img className='h-9 md:h-10 lg:14  ' src={logo} alt="" /></a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
-                    <nav className="menu menu-horizontal px-1 space-x-12 text-white">
-                        {links}
+                    <nav className="menu menu-horizontal  space-x-12 text-black">
+                        <NavLink  className="px-2"  to={'/'}>Home</NavLink>
+                        <NavLink className="px-2" to={'/allproperties'}> All Properties</NavLink>
+                        <NavLink className="px-2" to={'/addpropertie'}> Add Properties</NavLink>
+
                     </nav>
                 </div>
                 <div className="dropdown dropdown-end navbar-end">
