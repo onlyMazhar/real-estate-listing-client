@@ -23,7 +23,7 @@ const Registration = () => {
             <title>Home Nest - Register</title>
 
             <section className="flex justify-center items-center min-h-screen bg-gray-100 p-6 sm:p-8 lg:p-16">
-                <div className="  w-full max-w-2xl  p-8 sm:p-12">
+                <div className="  w-full max-w-2xl  p-4 sm:p-12">
                     {/* Header */}
                     <header className="mb-8 text-center">
                         <h2 className="text-3xl font-bold text-gray-800">Create an Account</h2>

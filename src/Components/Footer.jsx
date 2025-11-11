@@ -7,7 +7,7 @@ import Container from './Container';
 const Footer = () => {
     return (
         <>
-            <footer className='bg-secondary mt-15'>
+            <footer className='bg-secondary'>
                 <Container>
 
 

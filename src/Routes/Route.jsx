@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router";
 import MainLayout from "../MainLayout/MainLayout";
 import Banner from "../Components/Banner";
 import Home from "../Pages/Home";
-import AllProperties from "../Pages/AllProperties";
+import AllProperties from "../Pages/AllProperties/AllProperties";
 import AddPropertie from "../Pages/AddPropertie";
 import Login from "../Pages/Lgoin";
 import Register from "../Pages/Register";
@@ -18,7 +18,8 @@ const router = createBrowserRouter([
             },
             {
                 path: '/allproperties',
-                element: <AllProperties />
+                element: <AllProperties />,
+                loader: ()=> fetch('http://localhost:3000/lists')
             },
             {
                 path: '/addpropertie',

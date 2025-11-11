@@ -1,13 +1,13 @@
 import React from "react";
 import formImg from "../assets/formImg.svg";
 
-const RealEstateInquiryForm = () => {
+const InquiryForm = () => {
   return (
     <section className="sm:py-12 px-4">
-      <div className="max-w-6xl py-20 mx-auto flex flex-col gap-8 lg:flex-row overflow-hidden">
+      <div className="max-w-6xl py-10 md:py-16 lg:py-20 mx-auto flex flex-col gap-8 lg:flex-row overflow-hidden">
         
         {/*Frm Section*/}
-        <div className="p-10 sm:p-8 lg:w-1/2">
+        <div className="p-4 sm:p-8 lg:w-1/2">
           <div className="mb-8">
             <h2 className="text-3xl font-bold text-gray-800">Real Estate Inquiry Form </h2>
             <p className="text-gray-500 mt-2">Share your preferences — we'll connect you with the right
@@ -123,4 +123,4 @@ const RealEstateInquiryForm = () => {
   );
 };
 
-export default RealEstateInquiryForm;
+export default InquiryForm;

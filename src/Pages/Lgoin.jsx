@@ -3,7 +3,7 @@ import { Link } from "react-router";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 
 const Registration = () => {
-    const [error, setError] = useState("");
+    // const [error, setError] = useState("");
     const [showPassword, setShowPassword] = useState(false);
 
     const handleLogin = (e) => {
@@ -17,7 +17,7 @@ const Registration = () => {
         <>
             <title>Home Nest - Login</title>
             <section className="flex justify-center items-center min-h-screen bg-gray-100 p-6 sm:p-8 lg:p-16">
-                <div className="  w-full max-w-2xl  p-8 sm:p-12">
+                <div className="  w-full max-w-2xl  p-4 sm:p-12">
                     {/* Header */}
                     <header className="mb-8 text-center">
                         <h2 className="text-3xl font-bold text-gray-800">Login</h2>
@@ -55,7 +55,7 @@ const Registration = () => {
                                     {showPassword ? <FaRegEye /> : <FaRegEyeSlash />}
                                 </div>
                             </div>
-                            {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+                            {/* {error && <p className="text-red-500 text-sm mt-2">{error}</p>} */}
                         </div>
 
                         {/* Submit Button */}
@@ -72,9 +72,9 @@ const Registration = () => {
                     {/* Divider */}
                     {/* Divider */}
                     <div className="flex items-center my-5">
-                        <div className="flex-grow border-t border-gray-300"></div>
+                        <div className="grow border-t border-gray-300"></div>
                         <span className="px-3 text-gray-500 text-sm">or</span>
-                        <div className="flex-grow border-t border-gray-300"></div>
+                        <div className="grow border-t border-gray-300"></div>
                     </div>
                     {/* Google Login */}
                     <button className="flex items-center justify-center gap-2 w-full border border-gray-300 text-gray-800 py-3 rounded-lg hover:bg-gray-100 transition">
