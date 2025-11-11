@@ -9,6 +9,7 @@ import Signup from "../Pages/Signup";
 import MyRatings from "../Pages/MyRatings";
 import MyProperties from "../Pages/MyProperties";
 import PrivateRoute from "./PrivateRoute";
+import Page404 from "../Pages/Page404";
 
 const router = createBrowserRouter([
     {
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
                 element: <Signup />
             }
         ]
+    },
+    {
+        path: '*',
+        element: <Page404 />
     }
 ])
 

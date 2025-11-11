@@ -33,15 +33,15 @@ const Signup = () => {
         <>
             <title>Home Nest - Register</title>
 
-            <section className="flex justify-center items-center  bg-gray-100 p-6 sm:p-8 lg:p-16">
-                <div className="  w-full max-w-2xl  p-4 sm:p-12">
+            <div className="flex justify-center items-center  bg-gray-100 p-6 sm:p-8 lg:p-16">
+                <div className="  w-full max-w-lg  p- sm:px-8">
                     {/* Header */}
-                    <header className="mb-8 text-center">
+                    <div className="mb-8 text-center">
                         <h2 className="text-3xl font-bold text-gray-800">Create an Account</h2>
                         <p className="text-gray-500 mt-2 text-sm">
                             Register now to access all exclusive properties and manage your listings easily.
                         </p>
-                    </header>
+                    </div>
 
                     {/* Form */}
                     <form onSubmit={handleSignup} className="space-y-6">
@@ -159,7 +159,7 @@ const Signup = () => {
                         </Link>
                     </p>
                 </div>
-            </section>
+            </div>
         </>
     );
 };

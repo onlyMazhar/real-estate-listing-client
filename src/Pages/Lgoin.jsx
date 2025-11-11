@@ -28,12 +28,12 @@ const Registration = () => {
     return (
         <>
             <title>Home Nest - Login</title>
-            <section className="flex justify-center items-center bg-gray-100 p-6 sm:p-8 lg:p-16">
-                <div className="  w-full max-w-2xl  p-4 sm:p-12">
+            <div className="flex justify-center items-center bg-gray-100 p-6 pt-20 sm:p-8 lg:p-12">
+                <div className="  w-full max-w-lg   p-4 sm:p-8">
                     {/* Header */}
-                    <header className="mb-8 text-center">
+                    <div className="mb-8 text-center">
                         <h2 className="text-3xl font-bold text-gray-800">Login</h2>
-                    </header>
+                    </div>
 
                     {/* Form */}
                     <form onSubmit={handleLogin} className="space-y-6">
@@ -127,7 +127,7 @@ const Registration = () => {
                     </p>
                  
             </div>
-        </section >
+        </div >
         </>
     );
 };
