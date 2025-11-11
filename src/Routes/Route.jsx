@@ -5,7 +5,7 @@ import Home from "../Pages/Home";
 import AllProperties from "../Pages/AllProperties/AllProperties";
 import AddPropertie from "../Pages/AddPropertie";
 import Login from "../Pages/Lgoin";
-import Register from "../Pages/Register";
+import Signup from "../Pages/Signup";
 
 const router = createBrowserRouter([
     {
@@ -30,8 +30,8 @@ const router = createBrowserRouter([
                 element: <Login />
             },
             {
-                path: '/register',
-                element: <Register/>
+                path: '/signup',
+                element: <Signup/>
             }
         ]
     }

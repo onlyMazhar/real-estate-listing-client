@@ -1,22 +1,34 @@
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import { Link } from "react-router";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import { AuthContext } from "../Context/AuthContext";
 
 const Registration = () => {
     // const [error, setError] = useState("");
     const [showPassword, setShowPassword] = useState(false);
 
+    const {loginUser} = use(AuthContext)
+
     const handleLogin = (e) => {
         e.preventDefault();
         const email = e.target.email.value;
         const password = e.target.password.value;
+
+        loginUser(email, password)
+        .then(result =>{
+            console.log(result.user)
+        })
+        .catch(err =>{
+            console.log(err)
+        })
+
         console.log(email, password);
     };
 
     return (
         <>
             <title>Home Nest - Login</title>
-            <section className="flex justify-center items-center min-h-screen bg-gray-100 p-6 sm:p-8 lg:p-16">
+            <section className="flex justify-center items-center bg-gray-100 p-6 sm:p-8 lg:p-16">
                 <div className="  w-full max-w-2xl  p-4 sm:p-12">
                     {/* Header */}
                     <header className="mb-8 text-center">
@@ -111,7 +123,7 @@ const Registration = () => {
                     {/* Footer */}
                     <p className="text-center text-sm text-gray-600 mt-5">
                         New to Home Nest? 
-                        <Link to="/register"   className="text-yellow-600 font-semibold hover:underline" > Register / Create an account</Link>
+                        <Link to="/signup"   className="text-yellow-600 font-semibold hover:underline" > Signup</Link>
                     </p>
                  
             </div>

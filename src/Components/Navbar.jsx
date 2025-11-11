@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { use } from 'react';
 import { Link, NavLink } from 'react-router';
 import logo from '../assets/logo-colored.png'
 import Container from './Container';
+import { AuthContext } from "../Context/AuthContext";
+
 
 const Navbar = () => {
+
+    const { user } = use(AuthContext)
 
     return (
         <Container>
@@ -32,25 +36,38 @@ const Navbar = () => {
 
                     </nav>
                 </div>
-                <div className="dropdown dropdown-end navbar-end">
-                    <Link to={'/login'}>
-                        <button className='btn btn-primary text-black' >Login</button>
-                    </Link>
-                      <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                        <div className="w-10 rounded-full">
-                            <img
-                                alt="Tailwind CSS Navbar component"
-                                src="https://cdn-icons-png.flaticon.com/512/8792/8792047.png" />
-                        </div>
-                    </div>
-                    <ul
-                        tabIndex="-1"
-                        className="menu menu-sm dropdown-content bg-white/30 backdrop-blur-sm text-white rounded-box z-1 mt-44 w-52 p-2 ">
-                        <li><NavLink className="justify-between">Profile</NavLink></li>
-                        <li> <NavLink> My Properties</NavLink> </li>
-                        <li> <NavLink> My Ratings</NavLink> </li>
-                        <button className=' py-1 w-1/2 mx-auto   btn btn-ghost bg-primary text-white '>Logout</button>
-                    </ul>
+                <div className="dropdown dropdown-end navbar-end space-x-4">
+                    {
+                        user
+                            ? <>
+                                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                                    <div className="w-10 rounded-full">
+                                        <img
+                                            title={user.email}
+                                            alt="Tailwind CSS Navbar component"
+                                            src="https://cdn-icons-png.flaticon.com/512/8792/8792047.png" />
+                                    </div>
+                                </div>
+                                <ul
+                                    tabIndex="-1"
+                                    className="menu menu-sm dropdown-content bg-white/30 backdrop-blur-sm text-black rounded-box z-1 mt-44 w-52 p-2 ">
+                                    <li><NavLink className="justify-between">Profile</NavLink></li>
+                                    <li> <NavLink> My Properties</NavLink> </li>
+                                    <li> <NavLink> My Ratings</NavLink> </li>
+                                    <button className=' py-1 w-1/2 mx-auto   btn btn-ghost bg-primary'>Logout</button>
+                                </ul>
+                            </>
+                            : <div className='space-x-4'>
+                                <Link to={'/login'}>
+                                    <button className='btn btn-primary text-black' >Login</button>
+                                </Link>
+                                <Link to={'/signup'}>
+                                    <button className='btn btn-primary text-black' >SignUP</button>
+                                </Link>
+                            </div>
+                    }
+
+
                 </div>
             </div>
         </Container>

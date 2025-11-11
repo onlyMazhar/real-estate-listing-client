@@ -5,7 +5,7 @@ const InquiryForm = () => {
   return (
     <section className="sm:py-12 px-4">
       <div className="max-w-6xl py-10 md:py-16 lg:py-20 mx-auto flex flex-col gap-8 lg:flex-row overflow-hidden">
-        
+
         {/*Frm Section*/}
         <div className="p-4 sm:p-8 lg:w-1/2">
           <div className="mb-8">
@@ -33,23 +33,19 @@ const InquiryForm = () => {
             {/* Name Row */}
             <div className="flex flex-col sm:flex-row gap-4">
               <div className="flex-1">
-                <label className="block font-semibold mb-2 text-gray-700">How to Address </label>
-                <select
-                  className="w-full border border-gray-300 rounded-lg p-3 bg-gray-50 focus:ring-2 focus:ring-yellow-400"
-                  required
-                >
-                  <option value="">— Choose an option —</option>
-                  <option>Mr.</option>
-                  <option>Ms.</option>
-                  <option>Dr.</option>
-                </select>
-              </div>
-
-              <div className="flex-1">
-                <label className="block font-semibold mb-2 text-gray-700">Your Name</label>
+                <label className="block font-semibold mb-2 text-gray-700">First Name </label>
                 <input
                   type="text"
-                  placeholder="Enter your name"
+                  placeholder="Enter your first name"
+                  className="w-full border border-gray-300 rounded-lg p-3 bg-gray-50 focus:ring-2 focus:ring-yellow-400"
+                  required
+                />
+              </div>
+              <div className="flex-1">
+                <label className="block font-semibold mb-2 text-gray-700">Last Name</label>
+                <input
+                  type="text"
+                  placeholder="Enter last your name"
                   className="w-full border border-gray-300 rounded-lg p-3 bg-gray-50 focus:ring-2 focus:ring-yellow-400"
                   required
                 />
@@ -65,17 +61,6 @@ const InquiryForm = () => {
                 className="w-full border border-gray-300 rounded-lg p-3 bg-gray-50 focus:ring-2 focus:ring-yellow-400"
                 required
               />
-            </div>
-
-            {/* Role */}
-            <div>
-              <label className="block font-semibold mb-2 text-gray-700"> I am a... </label>
-              <select className="w-full border border-gray-300 rounded-lg p-3 bg-gray-50 focus:ring-2 focus:ring-yellow-400"required >
-                <option value="">— Choose a role —</option>
-                <option>Property Owner</option>
-                <option>Real Estate Agent</option>
-                <option>Prospective Buyer</option>
-              </select>
             </div>
 
             {/* Price & Size */}
@@ -103,7 +88,7 @@ const InquiryForm = () => {
 
             {/* Submit */}
             <div className="pt-2">
-              <button type="submit"   className="w-full bg-yellow-400 hover:bg-yellow-500 transition font-bold text-gray-900 py-3 rounded-lg">
+              <button type="submit" className="w-full bg-yellow-400 hover:bg-yellow-500 transition font-bold text-gray-900 py-3 rounded-lg">
                 Submit Inquiry
               </button>
             </div>

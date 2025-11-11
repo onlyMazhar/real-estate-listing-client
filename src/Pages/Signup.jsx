@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import { Link } from "react-router";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import { AuthContext } from "../Context/AuthContext";
 
-const Registration = () => {
+const Signup = () => {
     const [error, setError] = useState("");
     const [showPassword, setShowPassword] = useState(false);
+    const {createUser} = use(AuthContext)
+    // console.log(createUser)
 
-    const handleRegistration = (e) => {
+    const handleSignup = (e) => {
         e.preventDefault();
         setError("");
 
@@ -15,6 +18,14 @@ const Registration = () => {
         const email = e.target.email.value;
         const password = e.target.password.value;
 
+        createUser(email,password)
+        .then((result) => {
+            console.log(result.user)
+        }).catch((err) => {
+            console.log(err)
+        });
+
+
         console.log(name, photoUrl, email, password);
     };
 
@@ -22,7 +33,7 @@ const Registration = () => {
         <>
             <title>Home Nest - Register</title>
 
-            <section className="flex justify-center items-center min-h-screen bg-gray-100 p-6 sm:p-8 lg:p-16">
+            <section className="flex justify-center items-center  bg-gray-100 p-6 sm:p-8 lg:p-16">
                 <div className="  w-full max-w-2xl  p-4 sm:p-12">
                     {/* Header */}
                     <header className="mb-8 text-center">
@@ -33,7 +44,7 @@ const Registration = () => {
                     </header>
 
                     {/* Form */}
-                    <form onSubmit={handleRegistration} className="space-y-6">
+                    <form onSubmit={handleSignup} className="space-y-6">
                         {/* Full Name */}
                         <div className="form-control">
                             <label className="label font-semibold text-gray-700">Full Name</label>
@@ -95,9 +106,9 @@ const Registration = () => {
                         <div className="pt-2">
                             <button
                                 type="submit"
-                                className="btn btn-warning w-full text-black font-bold text-lg"
+                                className="btn btn-primary w-full text-black font-bold text-lg"
                             >
-                                Register
+                                SignUP
                             </button>
                         </div>
                     </form>
@@ -153,4 +164,4 @@ const Registration = () => {
     );
 };
 
-export default Registration;
+export default Signup;
