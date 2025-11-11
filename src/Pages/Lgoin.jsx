@@ -76,7 +76,7 @@ const Registration = () => {
                                 type="submit"
                                 className="btn btn-warning w-full text-black font-bold text-lg"
                             >
-                                Register
+                                Login
                             </button>
                         </div>
                     </form>

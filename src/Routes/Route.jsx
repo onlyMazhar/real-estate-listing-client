@@ -6,6 +6,9 @@ import AllProperties from "../Pages/AllProperties/AllProperties";
 import AddPropertie from "../Pages/AddPropertie";
 import Login from "../Pages/Lgoin";
 import Signup from "../Pages/Signup";
+import MyRatings from "../Pages/MyRatings";
+import MyProperties from "../Pages/MyProperties";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -19,11 +22,25 @@ const router = createBrowserRouter([
             {
                 path: '/allproperties',
                 element: <AllProperties />,
-                loader: ()=> fetch('http://localhost:3000/lists')
+                loader: () => fetch('http://localhost:3000/lists')
             },
             {
                 path: '/addpropertie',
-                element: <AddPropertie />
+                element: <PrivateRoute>
+                    <AddPropertie />
+                </PrivateRoute>
+            },
+            {
+                path: '/myratings',
+                element: <PrivateRoute>
+                    <MyRatings />
+                </PrivateRoute>
+            },
+            {
+                path: '/myproperties',
+                element: <PrivateRoute>
+                    <MyProperties />
+                </PrivateRoute>
             },
             {
                 path: '/login',
@@ -31,7 +48,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/signup',
-                element: <Signup/>
+                element: <Signup />
             }
         ]
     }

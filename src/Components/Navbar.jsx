@@ -7,7 +7,17 @@ import { AuthContext } from "../Context/AuthContext";
 
 const Navbar = () => {
 
-    const { user } = use(AuthContext)
+    const { user,logoutUser } = use(AuthContext)
+
+    const handleLogout =()=>{
+        logoutUser()
+        .then(()=>{
+
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+    }
 
     return (
         <Container>
@@ -19,10 +29,10 @@ const Navbar = () => {
                         </div>
                         <nav
                             tabIndex="-1"
-                            className="menu text-white menu-sm dropdown-content rounded-box z-1 mt- w-44 p-2 bg-white/30 backdrop-blur-sm">
-                            <NavLink to={'/'}>Home</NavLink>
-                            <NavLink> All Properties</NavLink>
-                            <NavLink> Add Properties</NavLink>
+                            className="menu text-blace menu-sm dropdown-content rounded-box z-1 mt- w-44 p-2 bg-white/30 backdrop-blur-sm">
+                            <NavLink className="px-2" to={'/'}>Home</NavLink>
+                            <NavLink className="px-2" to={'/allproperties'}> All Properties</NavLink>
+                            <NavLink className="px-2" to={'/addpropertie'}> Add Properties</NavLink>
 
                         </nav>
                     </div>
@@ -51,10 +61,9 @@ const Navbar = () => {
                                 <ul
                                     tabIndex="-1"
                                     className="menu menu-sm dropdown-content bg-white/30 backdrop-blur-sm text-black rounded-box z-1 mt-44 w-52 p-2 ">
-                                    <li><NavLink className="justify-between">Profile</NavLink></li>
-                                    <li> <NavLink> My Properties</NavLink> </li>
-                                    <li> <NavLink> My Ratings</NavLink> </li>
-                                    <button className=' py-1 w-1/2 mx-auto   btn btn-ghost bg-primary'>Logout</button>
+                                    <li><NavLink to={'/myproperties'} className="justify-between"> My Properties</NavLink></li>
+                                    <li> <NavLink to={'/myratings'} > My Ratings</NavLink> </li>
+                                    <button onClick={handleLogout} className=' py-1 w-1/2 mx-auto   btn btn-ghost bg-primary'>Logout</button>
                                 </ul>
                             </>
                             : <div className='space-x-4'>
