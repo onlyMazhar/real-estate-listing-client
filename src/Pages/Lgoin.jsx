@@ -1,13 +1,16 @@
 import React, { use, useState } from "react";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../Context/AuthContext";
+import { Bounce, toast } from "react-toastify";
 
 const Registration = () => {
     // const [error, setError] = useState("");
     const [showPassword, setShowPassword] = useState(false);
+    const location = useLocation();
+    const navigate = useNavigate()
 
-    const {loginUser} = use(AuthContext)
+    const { loginUser, loginWithGooGle } = use(AuthContext)
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -15,21 +18,75 @@ const Registration = () => {
         const password = e.target.password.value;
 
         loginUser(email, password)
-        .then(result =>{
-            console.log(result.user)
-        })
-        .catch(err =>{
-            console.log(err)
-        })
+            .then(() => {
+                navigate(location?.state || '/')
+                toast.success('Login Successfull!', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",   
+                    transition: Bounce,
+                });
+            })
+            .catch(err => {
+                toast.error(`${err.message}`, {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    transition: Bounce,
+                });
+            })
 
         console.log(email, password);
     };
+    const handleGoogleSignIN = () => {
+        loginWithGooGle()
+            .then(() => {
+                // console.log(result.user)
+                navigate(location?.state || '/')
+                toast.success('Login Successfull!', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                    transition: Bounce,
+                });
+            })
+            .catch(error => {
+                // console.log(error)
+                toast.error(`${error.message}`, {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    transition: Bounce,
+                });
+            })
+    }
+
 
     return (
         <>
             <title>Home Nest - Login</title>
-            <div className="flex justify-center items-center bg-gray-100 p-6 pt-20 sm:p-8 lg:p-12">
-                <div className="  w-full max-w-lg   p-4 sm:p-8">
+            <div className="flex justify-center items-center bg-gray-100 p-6 pt-20 sm:p-8 lg:p-12 ">
+                <div className="  w-full max-w-lg   p-4 sm:p-8 border-2 rounded-sm border-primary">
                     {/* Header */}
                     <div className="mb-8 text-center">
                         <h2 className="text-3xl font-bold text-gray-800">Login</h2>
@@ -89,7 +146,7 @@ const Registration = () => {
                         <div className="grow border-t border-gray-300"></div>
                     </div>
                     {/* Google Login */}
-                    <button className="flex items-center justify-center gap-2 w-full border border-gray-300 text-gray-800 py-3 rounded-lg hover:bg-gray-100 transition">
+                    <button onClick={handleGoogleSignIN} className="btn flex items-center justify-center gap-2 w-full border border-gray-300 text-gray-800 py-3 rounded-lg hover:bg-gray-100 transition">
                         <svg
                             aria-label="Google logo"
                             width="18"
@@ -122,12 +179,12 @@ const Registration = () => {
 
                     {/* Footer */}
                     <p className="text-center text-sm text-gray-600 mt-5">
-                        New to Home Nest? 
-                        <Link to="/signup"   className="text-yellow-600 font-semibold hover:underline" > Signup</Link>
+                        New to Home Nest?
+                        <Link to="/signup" className="text-yellow-600 font-semibold hover:underline" > Signup</Link>
                     </p>
-                 
-            </div>
-        </div >
+
+                </div>
+            </div >
         </>
     );
 };

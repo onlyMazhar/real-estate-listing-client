@@ -6,8 +6,8 @@ const AddPropertie = () => {
     const { user } = use(AuthContext)
     return (
         <Container>
-            <div className="flex justify-center items-center min-h-screen  py-6 sm:py- px-4 pb-14">
-                <div className="w-full max-w-2xl sm:p-2">
+            <div className="flex justify-center   items-center min-h-screen  p-6 sm:py-  px-4 pb-14">
+                <div className="w-full max-w-2xl sm:p-8 border-2 rounded-sm border-primary">
                     <div className="text-center mb-8">
                         <h1 className="text-3xl font-bold text-gray-800">Add a New Property</h1>
                         <p className="text-gray-500 text-sm mt-2">

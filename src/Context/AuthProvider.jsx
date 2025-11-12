@@ -1,20 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import { AuthContext } from './AuthContext';
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
 import { auth } from '../Firebase/Firebase.init';
+const googlePfovider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
+    const [loading, setLoading] = useState(true)
 
-    const createUser = (password, email) => {
+    const createUser = (email, password) => {
+        setLoading(true)
         return createUserWithEmailAndPassword(auth, email, password)
     }
 
     const loginUser = (email, password) => {
+        setLoading(true)
+
         return signInWithEmailAndPassword(auth, email, password)
     }
 
-    const logoutUser =( )=>{
+    const loginWithGooGle = () => {
+        setLoading(true)
+
+        return signInWithPopup(auth, googlePfovider)
+    }
+
+    const logoutUser = () => {
+        setLoading(true)
         return signOut(auth)
     }
 
@@ -27,20 +39,24 @@ const AuthProvider = ({ children }) => {
     //     }
     // })
 
-    useEffect(()=>{
-        const unsubcribe = onAuthStateChanged(auth, (currentUser)=>{
+    useEffect(() => {
+        const unsubcribe = onAuthStateChanged(auth, (currentUser) => {
             console.log('currnet user in auth change', currentUser)
             setUser(currentUser)
+            setLoading(false)
+
         })
-        return ()=>{
+        return () => {
             unsubcribe()
         }
-    },[])
+    }, [])
 
     const authInfo = {
         user,
         createUser,
         loginUser,
+        loading,
+        loginWithGooGle,
         logoutUser
 
     }

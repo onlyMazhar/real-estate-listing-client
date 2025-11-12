@@ -1,22 +1,47 @@
 import React, { use } from 'react';
-import { Link, NavLink } from 'react-router';
+import { Link, NavLink, useNavigate } from 'react-router';
 import logo from '../assets/logo-colored.png'
 import Container from './Container';
 import { AuthContext } from "../Context/AuthContext";
+import { Bounce, toast } from 'react-toastify';
 
 
 const Navbar = () => {
 
-    const { user,logoutUser } = use(AuthContext)
+    const { user, logoutUser } = use(AuthContext)
+    const navigate = useNavigate();
 
-    const handleLogout =()=>{
+    const handleLogout = () => {
         logoutUser()
-        .then(()=>{
-
-        })
-        .catch((err)=>{
-            console.log(err)
-        })
+            .then(() => {
+                // console.log(result.user)
+                toast.success('Logout Successfull!', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                    transition: Bounce,
+                });
+                navigate('/')
+            })
+            .catch(error => {
+                // console.log(error)
+                toast.error(`${error.message}`, {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    transition: Bounce,
+                });
+            })
     }
 
     return (
@@ -39,10 +64,16 @@ const Navbar = () => {
                     <Link to={'/'} className=" md:pl-2 lg:pl-2 text-xl "><img className='h-9 md:h-10 lg:14  ' src={logo} alt="" /></Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
-                    <nav className="menu menu-horizontal  space-x-12 text-black">
+                    <nav className="menu menu-horizontal  space-x-12 text-black t">
                         <NavLink className="px-2" to={'/'}>Home</NavLink>
                         <NavLink className="px-2" to={'/allproperties'}> All Properties</NavLink>
                         <NavLink className="px-2" to={'/addpropertie'}> Add Properties</NavLink>
+                        {
+                            user && <>
+                                <NavLink className="px-2" to={'/myproperties'}> My Properties </NavLink>
+                                <NavLink className="px-2" to={'/myratings'} > My Ratings </NavLink>
+                            </>
+                        }
 
                     </nav>
                 </div>
@@ -60,9 +91,11 @@ const Navbar = () => {
                                 </div>
                                 <ul
                                     tabIndex="-1"
-                                    className="menu menu-sm dropdown-content bg-white/30 backdrop-blur-sm text-black rounded-box z-1 mt-44 w-52 p-2 ">
-                                    <li><NavLink to={'/myproperties'} className="justify-between"> My Properties</NavLink></li>
-                                    <li> <NavLink to={'/myratings'} > My Ratings</NavLink> </li>
+                                    className=" menu menu-sm border border-primary dropdown-content bg-white/30 backdrop-blur-sm text-black rounded-sm z-1 mt-38 mr-5 p-2 ">
+                                    {/* <h3>{user.displayName}</h3> */}
+                                    <div className='px-1 pb-3'>
+                                        <h3>User displayName</h3>
+                                        <p><small>{user.email}</small></p></div>
                                     <button onClick={handleLogout} className=' py-1 w-1/2 mx-auto   btn btn-ghost bg-primary'>Logout</button>
                                 </ul>
                             </>
