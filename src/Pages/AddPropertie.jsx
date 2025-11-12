@@ -1,9 +1,43 @@
 import React, { use } from 'react';
 import Container from '../Components/Container';
 import { AuthContext } from '../Context/AuthContext';
+import Swal from 'sweetalert2';
 
 const AddPropertie = () => {
     const { user } = use(AuthContext)
+
+
+    const propertySubmit = e => {
+        e.preventDefault()
+
+        const propertyData = {
+            category: e.target.category.value,
+            description: e.target.description.value,
+            image: e.target.image.value,
+            location: e.target.location.value,
+            posted_date: new Date(),
+            price: e.target.price.value,
+            property_name: e.target.name.value,
+            user_email: user.email,
+            user_name: user.displayName
+
+        }
+        fetch('http://localhost:3000/lists', {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json",
+            },
+            body: JSON.stringify(propertyData)
+        })
+
+        // console.log(propertyData)
+        e.target.reset();
+        Swal.fire({
+            title: "Property Details Added",
+            icon: "success",
+            draggable: true
+        });
+    }
     return (
         <Container>
             <div className="flex justify-center   items-center min-h-screen  p-6 sm:py-  px-4 pb-14">
@@ -15,7 +49,7 @@ const AddPropertie = () => {
                         </p>
                     </div>
 
-                    <form className="space-y-6">
+                    <form onSubmit={propertySubmit} className="space-y-6">
                         {/* Property Name */}
                         <div className="form-control">
                             <label className="label font-semibold text-gray-700">Property Name</label>
@@ -123,6 +157,7 @@ const AddPropertie = () => {
                         {/* Submit Button */}
                         <div className="pt-4">
                             <button
+                                onSubmit={propertySubmit}
                                 type="submit"
                                 className="btn bg-yellow-400 hover:bg-yellow-500 text-black font-bold w-full text-lg"
                             >

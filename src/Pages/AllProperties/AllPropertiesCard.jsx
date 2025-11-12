@@ -4,25 +4,25 @@ import { MdLocationPin } from 'react-icons/md';
 
 const AllPropertiesCard = ({ list }) => {
     console.log(list)
-    const { name, image_link, location, category, posted_by, property_price } = list;
+    const { property_name, image, location, category, user_name, price } = list;
     return (
         <div>
             <div className="bg-white h-full flex flex-col justify-between  hover:shadow-lg transition p-4 max-w-sm mx-auto">
                 {/* Thumbnail */}
                 <img
-                    src={image_link}
-                    alt={name}
+                    src={image}
+                    alt={property_name}
                     className="w-full h-56 object-cover mb-4"
                 />
 
                 {/* Info */}
                 <div className="space-y-1">
-                    <h3 className="text-xl font-semibold text-gray-800">{name}</h3>
+                    <h3 className="text-xl font-semibold text-gray-800">{property_name}</h3>
                     <p className="text-gray-500 text-sm capitalize">{category}</p>
-                    <p className="text-yellow-600 font-bold text-lg">${property_price}</p>
+                    <p className="text-yellow-600 font-bold text-lg">${price}</p>
                     <p className="text-gray-500 text-sm flex items-center"> <FaLocationDot /> {location}</p>
                     <p className="text-sm text-gray-600 mt-1">
-                        <span className="font-medium text-gray-700">Posted by:</span> {posted_by}
+                        <span className="font-medium text-gray-700">Posted by:</span> {user_name}
                     </p>
                 </div>
 
