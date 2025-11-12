@@ -1,10 +1,11 @@
 import React from 'react';
 import { FaLocationDot } from 'react-icons/fa6';
 import { MdLocationPin } from 'react-icons/md';
+import { Link } from 'react-router';
 
 const AllPropertiesCard = ({ list }) => {
-    console.log(list)
-    const { property_name, image, location, category, user_name, price } = list;
+    // console.log(list)
+    const { property_name, image, location, category, user_name, price, _id } = list;
     return (
         <div>
             <div className="bg-white h-full flex flex-col justify-between  hover:shadow-lg transition p-4 max-w-sm mx-auto">
@@ -27,12 +28,12 @@ const AllPropertiesCard = ({ list }) => {
                 </div>
 
                 {/* Button */}
-                <button
-                    className="mt-4 w-full bg-yellow-500 hover:bg-yellow-600 text-white py-2.5 rounded-lg font-medium transition"
-                    onClick={() => alert(`Viewing details of ${name}`)}
-                >
-                    See Details
-                </button>
+                <Link to={`/allproperties/${_id}`}>
+                    <button
+                        className="btn mt-4 w-full bg-yellow-500 hover:bg-yellow-600 text-white py-2.5 rounded-lg font-medium transition"
+                    >
+                        See Details
+                    </button></Link>
             </div>
         </div>
     );

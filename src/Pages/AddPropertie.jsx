@@ -11,15 +11,15 @@ const AddPropertie = () => {
         e.preventDefault()
 
         const propertyData = {
-            category: e.target.category.value,
-            description: e.target.description.value,
-            image: e.target.image.value,
-            location: e.target.location.value,
-            posted_date: new Date(),
-            price: e.target.price.value,
             property_name: e.target.name.value,
+            description: e.target.description.value,
+            category: e.target.category.value,
+            price: e.target.price.value,
+            location: e.target.location.value,
+            image: e.target.image.value,
             user_email: user.email,
-            user_name: user.displayName
+            user_name: user.displayName,
+            posted_date: new Date()
 
         }
         fetch('http://localhost:3000/lists', {
@@ -28,6 +28,10 @@ const AddPropertie = () => {
                 "Content-type": "application/json",
             },
             body: JSON.stringify(propertyData)
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log('after adding data', data)
         })
 
         // console.log(propertyData)

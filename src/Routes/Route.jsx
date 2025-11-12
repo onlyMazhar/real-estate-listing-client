@@ -10,6 +10,7 @@ import MyRatings from "../Pages/MyRatings";
 import MyProperties from "../Pages/MyProperties";
 import PrivateRoute from "./PrivateRoute";
 import Page404 from "../Pages/Page404";
+import PropertyDetails from "../Pages/AllProperties/PropertyDetails";
 
 const router = createBrowserRouter([
     {
@@ -24,6 +25,13 @@ const router = createBrowserRouter([
                 path: '/allproperties',
                 element: <AllProperties />,
                 loader: () => fetch('http://localhost:3000/lists')
+            },
+            {
+                path: '/allproperties/:id',
+                element: 
+                    <PropertyDetails />,
+               
+                loader: ({params}) => fetch(`http://localhost:3000/lists/${params.id}`)
             },
             {
                 path: '/addpropertie',
