@@ -1,11 +1,15 @@
 import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import Container from "../Components/Container";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const MyProperties = () => {
     const { user, setLoading } = useContext(AuthContext);
     const [myProperties, setMyProperties] = useState([]);
+    const data = useLoaderData();
+
+    console.log(data.result)
 
     useEffect(() => {
 
@@ -18,6 +22,42 @@ const MyProperties = () => {
             .catch((err) => console.error("Error loading properties:", err));
 
     }, [user, setLoading]);
+
+    const handleDelete = (id) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "This property will be permanently deleted!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:3000/lists/${id}`, {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                })
+                    .then((res) => res.json())
+                    .then((data) => {
+                        if (data.success && data.result.deletedCount > 0) {
+                            Swal.fire("Deleted!", "Your property has been removed.", "success");
+                            // Update UI without reloading
+                            setMyProperties((prev) => prev.filter((p) => p._id !== id));
+                        } else {
+                            Swal.fire("Error!", "Failed to delete property.", "error");
+                        }
+                    })
+                    .catch((err) => {
+                        console.error(err);
+                        Swal.fire("Error!", "Something went wrong.", "error");
+                    });
+            }
+        });
+    };
+
 
     return (
         <Container>
@@ -66,7 +106,7 @@ const MyProperties = () => {
                                                     Update
                                                 </button>
                                             </Link>
-                                            <button className="cursor-pointer bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md text-sm font-medium">
+                                            <button onClick={() => handleDelete(property._id)} className="cursor-pointer bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md text-sm font-medium">
                                                 Delete
                                             </button>
                                             <Link to={`/allproperties/${property._id}`}>
