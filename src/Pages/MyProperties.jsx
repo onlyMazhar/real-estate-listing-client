@@ -44,7 +44,6 @@ const MyProperties = () => {
                     .then((data) => {
                         if (data.success && data.result.deletedCount > 0) {
                             Swal.fire("Deleted!", "Your property has been removed.", "success");
-                            // Update UI without reloading
                             setMyProperties((prev) => prev.filter((p) => p._id !== id));
                         } else {
                             Swal.fire("Error!", "Failed to delete property.", "error");
