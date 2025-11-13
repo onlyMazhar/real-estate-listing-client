@@ -7,7 +7,7 @@ const PropertyDetails = () => {
     // const { id } = useParams();
     const data = useLoaderData();
     const property = data.result;
-    console.log(property)
+    // console.log(property)
 
 
 

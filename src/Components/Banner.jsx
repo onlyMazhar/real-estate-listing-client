@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import Container from './Container';
 
-// ✅ Import your image files directly
-import slide1 from '../assets/home_slide1.jpg';
+ import slide1 from '../assets/home_slide1.jpg';
 import slide2 from '../assets/home_slide2.png';
 import slide3 from '../assets/home_slide3.png';
 
@@ -37,7 +36,7 @@ const Banner = () => {
                                 alt={`Slide ${i + 1}`}
                                 className="w-full h-[60vh] md:h-[80vh] object-cover brightness-90"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                            <div className="absolute inset-0 bg-lineer-to-t from-black/40 to-transparent"></div>
                         </div>
                     ))}
                 </div>

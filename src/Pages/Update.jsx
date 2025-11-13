@@ -10,40 +10,7 @@ const Update = () => {
     const property = data.result;
     const navigate = useNavigate();
 
-    // console.log(property)
-    // const handleUpdate = () = {
-    // const handleUpdate = e => {
-    //     e.preventDefault()
-
-    //     const propertyData = {
-    //         property_name: e.target.name.value,
-    //         description: e.target.description.value,
-    //         category: e.target.category.value,
-    //         price: e.target.price.value,
-    //         location: e.target.location.value,
-    //         image: e.target.image.value,
-
-    //     }
-    //     fetch(`https://real-estate-listing-server.vercel.app/lists/${property._id}`, {
-    //         method: "PUT",
-    //         headers: {
-    //             "Content-type": "application/json",
-    //         },
-    //         body: JSON.stringify(propertyData)
-    //     })
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             console.log('after adding data', data)
-    //         })
-
-    //     // console.log(propertyData)
-    //     e.target.reset();
-    //     Swal.fire({
-    //         title: "Details Updated",
-    //         icon: "success",
-    //         draggable: true
-    //     });
-    // }
+    
     const handleUpdate = e => {
         e.preventDefault();
 

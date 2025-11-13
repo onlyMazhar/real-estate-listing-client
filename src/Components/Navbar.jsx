@@ -62,7 +62,6 @@ const Navbar = () => {
                             {
                                 user && <>
                                     <NavLink className="px-2" to={'/myproperties'}> My Properties </NavLink>
-                                    <NavLink className="px-2" to={'/myratings'} > My Ratings </NavLink>
                                 </>
                             }
                         </nav>
@@ -77,7 +76,6 @@ const Navbar = () => {
                         {
                             user && <>
                                 <NavLink className="px-2" to={'/myproperties'}> My Properties </NavLink>
-                                <NavLink className="px-2" to={'/myratings'} > My Ratings </NavLink>
                             </>
                         }
 

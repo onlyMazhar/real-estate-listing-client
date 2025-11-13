@@ -32,8 +32,8 @@ const AddPropertie = () => {
             body: JSON.stringify(propertyData)
         })
             .then(res => res.json())
-            .then(data => {
-                console.log('after adding data', data)
+            .then(() => {
+                // console.log('after adding data', data)
                 Swal.fire({
                     title: "Property Details Added",
                     icon: "success",

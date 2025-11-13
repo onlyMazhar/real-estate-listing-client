@@ -46,7 +46,7 @@ const Registration = () => {
                 });
             })
 
-        console.log(email, password);
+        // console.log(email, password);
     };
     const handleGoogleSignIN = () => {
         loginWithGooGle()
