@@ -15,9 +15,7 @@ The goal is to create a clean, responsive, and user-friendly property platform.
 - 🔍 **Browse All Properties** – View all available listings with images and details  
 - 🏡 **Add New Property** – Logged-in users can add new property posts  
 - ✏️ **Update & Delete** – Manage your own properties anytime  
-- 🌙 **Dark/Light Mode** – Toggle theme with one click  
 - 🔐 **User Authentication** – Login & Signup with Firebase  
-- ⭐ **My Ratings Page** – Check your given property ratings  
 - 📍 **Category Filter** – Properties divided into Rent, Sale, Commercial, and Land  
 - 🏙️ **Responsive Banner Slider** – Dynamic hero section with auto-slide images  
 
