@@ -3,11 +3,12 @@ import { Link, useNavigate } from "react-router";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../Context/AuthContext";
 import { Bounce, toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 const Signup = () => {
     const [error, setError] = useState("");
     const [showPassword, setShowPassword] = useState(false);
-    const { createUser, loginWithGooGle } = use(AuthContext)
+    const { createUser, loginWithGooGle, setUser, updateUser } = use(AuthContext)
     // const location = useLocation();
     const navigate = useNavigate()
     // console.log(createUser)
@@ -16,16 +17,46 @@ const Signup = () => {
         e.preventDefault();
         setError("");
 
-        // const name = e.target.name.value;
-        // const photoUrl = e.target.photoUrl.value;
+        const name = e.target.name.value;
+        const photoUrl = e.target.photoUrl.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
+        if (password < 6) {
+            setError('Passowrd must be at least 6 character')
+            return;
+        } if (!/[a-z]/.test(password)) {
+            setError('Must include a Lowercase letter in your password')
+            return;
+        } if (!/[A-Z]/.test(password)) {
+            setError('Must include an Uppercase letter in your password')
+            return;
+        }
 
         createUser(email, password)
-            .then(() => {
+            .then(result => {
                 // console.log(result.user)
+                const user = result.user;
+                updateUser({ displayName: name, photoURL: photoUrl })
+                    .then(() => {
+                        setUser({ ...user, displayName: name, photoURL: photoUrl })
+                    })
+                    .catch(error => {
+                        // console.log(error)
+                        toast.error(`${error}`, {
+                            position: "top-right",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: false,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "light",
+                            transition: Bounce,
+                        });
+                        setUser(user)
+                    })
                 navigate('/')
-                toast.success('Registration Successfull!!', {
+                toast.success('Registration Successfull!', {
                     position: "top-right",
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -36,19 +67,13 @@ const Signup = () => {
                     theme: "colored",
                     transition: Bounce,
                 });
-
             })
             .catch(error => {
-                toast.error(`${error.message}`, {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: false,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                    transition: Bounce,
+                // console.log(error.message)
+                Swal.fire({
+                    icon: "error",
+                    title: "Update Failed!",
+                    text: error.message,
                 });
             })
 

@@ -8,7 +8,7 @@ const Update = () => {
     const { user } = use(AuthContext)
     const data = useLoaderData();
     const property = data.result;
-        const navigate = useNavigate();
+    const navigate = useNavigate();
 
     // console.log(property)
     // const handleUpdate = () = {
@@ -22,9 +22,9 @@ const Update = () => {
     //         price: e.target.price.value,
     //         location: e.target.location.value,
     //         image: e.target.image.value,
-   
+
     //     }
-    //     fetch(`http://localhost:3000/lists/${property._id}`, {
+    //     fetch(`https://real-estate-listing-server.vercel.app/lists/${property._id}`, {
     //         method: "PUT",
     //         headers: {
     //             "Content-type": "application/json",
@@ -56,7 +56,7 @@ const Update = () => {
             image: e.target.image.value,
         };
 
-        fetch(`http://localhost:3000/lists/${property._id}`, {
+        fetch(`https://real-estate-listing-server.vercel.app/lists/${property._id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(propertyData)
@@ -69,10 +69,10 @@ const Update = () => {
                     icon: "success",
                     draggable: true
                 });
-                navigate('/myproperties');
+               navigate(`/allproperties/${property._id}`);
             })
             .catch(err => console.error(err));
-        }
+    }
     // }
     return (
         <Container>

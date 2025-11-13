@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { AuthContext } from './AuthContext';
-import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
+import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import { auth } from '../Firebase/Firebase.init';
 const googlePfovider = new GoogleAuthProvider();
 
@@ -30,14 +30,9 @@ const AuthProvider = ({ children }) => {
         return signOut(auth)
     }
 
-    // onAuthStateChanged(auth, (currentUser) => {
-    //     if (currentUser) {
-    //         console.log("User in : If", currentUser)
-
-    //     } else {
-    //         console.log("User in : else", currentUser)
-    //     }
-    // })
+    const updateUser = (updatedData) => {
+        return updateProfile(auth.currentUser, updatedData)
+    }
 
     useEffect(() => {
         const unsubcribe = onAuthStateChanged(auth, (currentUser) => {
@@ -53,8 +48,10 @@ const AuthProvider = ({ children }) => {
 
     const authInfo = {
         user,
+        setUser,
         createUser,
         loginUser,
+        updateUser,
         loading,
         setLoading,
         loginWithGooGle,

@@ -13,7 +13,7 @@ const MyProperties = () => {
 
     useEffect(() => {
 
-        fetch(`http://localhost:3000/myProperties?email=${user.email}`)
+        fetch(`https://real-estate-listing-server.vercel.app/myProperties?email=${user.email}`)
             .then((res) => res.json())
             .then((data) => {
                 setMyProperties(data);
@@ -34,7 +34,7 @@ const MyProperties = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:3000/lists/${id}`, {
+                fetch(`https://real-estate-listing-server.vercel.app/lists/${id}`, {
                     method: "DELETE",
                     headers: {
                         "Content-Type": "application/json",

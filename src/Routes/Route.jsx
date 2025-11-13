@@ -21,19 +21,19 @@ const router = createBrowserRouter([
             {
                 index: true,
                 element: <Home />,
-                loader: () => fetch('http://localhost:3000/latest-property')
+                loader: () => fetch('https://real-estate-listing-server.vercel.app/latest-property')
             },
             {
                 path: '/allproperties',
                 element: <AllProperties />,
-                loader: () => fetch('http://localhost:3000/lists')
+                loader: () => fetch('https://real-estate-listing-server.vercel.app/lists')
             },
             {
                 path: '/allproperties/:id',
                 element: <PrivateRoute>
                     <PropertyDetails />
                 </PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:3000/lists/${params.id}`)
+                loader: ({ params }) => fetch(`https://real-estate-listing-server.vercel.app/lists/${params.id}`)
             },
             {
                 path: '/addpropertie',
@@ -52,7 +52,7 @@ const router = createBrowserRouter([
                 element: <PrivateRoute>
                     <MyProperties />
                 </PrivateRoute>,
-                loader: () => fetch(`http://localhost:3000/lists`)
+                loader: () => fetch(`https://real-estate-listing-server.vercel.app/lists`)
             },
             // {
             //     path: '/myproperties',
@@ -65,7 +65,7 @@ const router = createBrowserRouter([
                 element: <PrivateRoute>
                     <Update />
                 </PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:3000/lists/${params.id}`)
+                loader: ({ params }) => fetch(`https://real-estate-listing-server.vercel.app/lists/${params.id}`)
 
             },
             {

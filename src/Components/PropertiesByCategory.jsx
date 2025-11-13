@@ -27,7 +27,7 @@ const categories = [
 
 const PropertiesByCategory = () => {
     return (
-        <div className=" ">
+        <div className="pt-20">
             <div className=" mx-auto">
                 <div className="flex justify-between items-center    px-4">
                     <div>
