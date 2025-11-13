@@ -1,17 +1,51 @@
 import { use } from 'react';
 import Container from '../Components/Container';
 import { AuthContext } from '../Context/AuthContext';
-import { useLoaderData } from 'react-router';
+import { useLoaderData, useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 
 const Update = () => {
     const { user } = use(AuthContext)
     const data = useLoaderData();
     const property = data.result;
+        const navigate = useNavigate();
+
     // console.log(property)
     // const handleUpdate = () = {
+    // const handleUpdate = e => {
+    //     e.preventDefault()
+
+    //     const propertyData = {
+    //         property_name: e.target.name.value,
+    //         description: e.target.description.value,
+    //         category: e.target.category.value,
+    //         price: e.target.price.value,
+    //         location: e.target.location.value,
+    //         image: e.target.image.value,
+   
+    //     }
+    //     fetch(`http://localhost:3000/lists/${property._id}`, {
+    //         method: "PUT",
+    //         headers: {
+    //             "Content-type": "application/json",
+    //         },
+    //         body: JSON.stringify(propertyData)
+    //     })
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             console.log('after adding data', data)
+    //         })
+
+    //     // console.log(propertyData)
+    //     e.target.reset();
+    //     Swal.fire({
+    //         title: "Details Updated",
+    //         icon: "success",
+    //         draggable: true
+    //     });
+    // }
     const handleUpdate = e => {
-        e.preventDefault()
+        e.preventDefault();
 
         const propertyData = {
             property_name: e.target.name.value,
@@ -20,28 +54,25 @@ const Update = () => {
             price: e.target.price.value,
             location: e.target.location.value,
             image: e.target.image.value,
-   
-        }
+        };
+
         fetch(`http://localhost:3000/lists/${property._id}`, {
             method: "PUT",
-            headers: {
-                "Content-type": "application/json",
-            },
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify(propertyData)
         })
             .then(res => res.json())
             .then(data => {
-                console.log('after adding data', data)
+                console.log('after updating', data);
+                Swal.fire({
+                    title: "Details Updated",
+                    icon: "success",
+                    draggable: true
+                });
+                navigate('/myproperties');
             })
-
-        // console.log(propertyData)
-        e.target.reset();
-        Swal.fire({
-            title: "Details Updated",
-            icon: "success",
-            draggable: true
-        });
-    }
+            .catch(err => console.error(err));
+        }
     // }
     return (
         <Container>

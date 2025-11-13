@@ -2,9 +2,11 @@ import React, { use } from 'react';
 import Container from '../Components/Container';
 import { AuthContext } from '../Context/AuthContext';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router';
 
 const AddPropertie = () => {
     const { user } = use(AuthContext)
+    const navigate = useNavigate();
 
 
     const propertySubmit = e => {
@@ -32,15 +34,17 @@ const AddPropertie = () => {
             .then(res => res.json())
             .then(data => {
                 console.log('after adding data', data)
+                Swal.fire({
+                    title: "Property Details Added",
+                    icon: "success",
+                    draggable: true
+                });
+                navigate('/myproperties');
             })
 
         // console.log(propertyData)
         e.target.reset();
-        Swal.fire({
-            title: "Property Details Added",
-            icon: "success",
-            draggable: true
-        });
+
     }
     return (
         <Container>

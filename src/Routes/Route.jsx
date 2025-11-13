@@ -20,7 +20,8 @@ const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <Home />
+                element: <Home />,
+                loader: () => fetch('http://localhost:3000/latest-property')
             },
             {
                 path: '/allproperties',
@@ -62,7 +63,7 @@ const router = createBrowserRouter([
             {
                 path: '/update/:id',
                 element: <PrivateRoute>
-                    <Update/>
+                    <Update />
                 </PrivateRoute>,
                 loader: ({ params }) => fetch(`http://localhost:3000/lists/${params.id}`)
 

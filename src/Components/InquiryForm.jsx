@@ -1,21 +1,31 @@
 import React from "react";
 import formImg from "../assets/formImg.svg";
+import Swal from "sweetalert2";
 
 const InquiryForm = () => {
+  const formSubmit = (e) => {
+    e.preventDefault()
+    Swal.fire({
+      title: "Inquiry Submited",
+      icon: "success",
+      draggable: true
+    });
+    e.target.reset()
+  }
   return (
     <section className="sm:py-12 px-4">
       <div className="max-w-6xl py-10 md:py-16 lg:py-20 mx-auto flex flex-col gap-8 lg:flex-row overflow-hidden">
 
         {/*Frm Section*/}
-        <div className="p-4 sm:p-8 lg:w-1/2">
-          <div className="mb-8">
+        <div className="p-4 sm:p-8 lg:w-1/2 flex flex-col justify-around">
+          <div className="mb-8 py-auto">
             <h2 className="text-3xl font-bold text-gray-800">Real Estate Inquiry Form </h2>
             <p className="text-gray-500 mt-2">Share your preferences — we'll connect you with the right
               property that fits your lifestyle and budget.
             </p>
           </div>
 
-          <form className="space-y-6">
+          <form onSubmit={formSubmit} className="space-y-6">
             {/* Inquiry Type */}
             <div>
               <label className="block font-semibold mb-2 text-gray-700">Inquiry Type</label>
