@@ -11,6 +11,7 @@ import MyProperties from "../Pages/MyProperties";
 import PrivateRoute from "./PrivateRoute";
 import Page404 from "../Pages/Page404";
 import PropertyDetails from "../Pages/AllProperties/PropertyDetails";
+import Update from "../Pages/Update";
 
 const router = createBrowserRouter([
     {
@@ -49,11 +50,22 @@ const router = createBrowserRouter([
                 path: '/myproperties',
                 element: <PrivateRoute>
                     <MyProperties />
+                </PrivateRoute>,
+                loader: ({ params }) => fetch(`http://localhost:3000/lists/${params.id}`)
+            },
+            {
+                path: '/myproperties',
+                element: <PrivateRoute>
+                    <MyProperties />
                 </PrivateRoute>
             },
             {
-                path:'/myproperties',
-                element: <PrivateRoute></PrivateRoute>
+                path: '/update/:id',
+                element: <PrivateRoute>
+                    <Update/>
+                </PrivateRoute>,
+                loader: ({ params }) => fetch(`http://localhost:3000/lists/${params.id}`)
+
             },
             {
                 path: '/login',

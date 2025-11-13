@@ -61,14 +61,16 @@ const MyProperties = () => {
                                             {new Date(property.posted_date).toLocaleDateString()}
                                         </td>
                                         <td className="p-3 flex justify-center gap-2">
-                                            <button className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-md text-sm font-medium">
-                                                Update
-                                            </button>
-                                            <button className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md text-sm font-medium">
+                                            <Link to={`/update/${property._id}`}>
+                                                <button className="cursor-pointer bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded-md text-sm font-medium">
+                                                    Update
+                                                </button>
+                                            </Link>
+                                            <button className="cursor-pointer bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md text-sm font-medium">
                                                 Delete
                                             </button>
-                                            <Link to={`/lists/${property._id}`}>
-                                                <button className="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded-md text-sm font-medium">
+                                            <Link to={`/allproperties/${property._id}`}>
+                                                <button className="cursor-pointer bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded-md text-sm font-medium">
                                                     View Details
                                                 </button>
                                             </Link>
