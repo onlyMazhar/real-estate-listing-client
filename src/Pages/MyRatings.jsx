@@ -1,10 +1,13 @@
 import React from 'react';
+import Container from '../Components/Container';
 
 const MyRatings = () => {
     return (
-        <div>
-            My Ratings
-        </div>
+        <Container>
+            <div>
+                My Ratings
+            </div>
+        </Container>
     );
 };
 

@@ -59,7 +59,12 @@ const Navbar = () => {
                             <NavLink className="px-2" to={'/'}>Home</NavLink>
                             <NavLink className="px-2" to={'/allproperties'}> All Properties</NavLink>
                             <NavLink className="px-2" to={'/addpropertie'}> Add Properties</NavLink>
-
+                            {
+                                user && <>
+                                    <NavLink className="px-2" to={'/myproperties'}> My Properties </NavLink>
+                                    <NavLink className="px-2" to={'/myratings'} > My Ratings </NavLink>
+                                </>
+                            }
                         </nav>
                     </div>
                     <Link to={'/'} className=" md:pl-2 lg:pl-2 text-xl "><img className='h-9 md:h-10 lg:14  ' src={logo} alt="" /></Link>
@@ -83,18 +88,18 @@ const Navbar = () => {
                         user
                             ? <>
                                 <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                                    <div className="w-10 rounded-full">
+                                    <div className="w-12 rounded-full border-3  border-primary">
                                         <img
                                             title={user.email}
-                                            alt={user?.displayName }
-                                            src={user?.photoURL|| "https://cdn-icons-png.flaticon.com/512/8792/8792047.png"} />
+                                            alt={user?.displayName}
+                                            src={user?.photoURL || "https://cdn-icons-png.flaticon.com/512/8792/8792047.png"} />
                                     </div>
                                 </div>
                                 <ul
                                     tabIndex="-1"
                                     className=" menu menu-sm border border-primary dropdown-content bg-white/30 backdrop-blur-sm text-black rounded-sm z-1 mt-38 mr-5 p-2 ">
                                     <div className='px-1 pb-3'>
-                                    <h3>{user.displayName}</h3>
+                                        <h3>{user.displayName}</h3>
                                         {/* <h3>User displayName</h3> */}
                                         <p><small>{user.email}</small></p></div>
                                     <button onClick={handleLogout} className=' py-1 w-1/2 mx-auto   btn btn-ghost bg-primary'>Logout</button>

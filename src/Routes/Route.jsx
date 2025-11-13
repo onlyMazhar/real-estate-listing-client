@@ -28,10 +28,10 @@ const router = createBrowserRouter([
             },
             {
                 path: '/allproperties/:id',
-                element: 
-                    <PropertyDetails />,
-               
-                loader: ({params}) => fetch(`http://localhost:3000/lists/${params.id}`)
+                element: <PrivateRoute>
+                    <PropertyDetails />
+                </PrivateRoute>,
+                loader: ({ params }) => fetch(`http://localhost:3000/lists/${params.id}`)
             },
             {
                 path: '/addpropertie',
@@ -50,6 +50,10 @@ const router = createBrowserRouter([
                 element: <PrivateRoute>
                     <MyProperties />
                 </PrivateRoute>
+            },
+            {
+                path:'/myproperties',
+                element: <PrivateRoute></PrivateRoute>
             },
             {
                 path: '/login',

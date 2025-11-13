@@ -8,7 +8,7 @@ const AllPropertiesCard = ({ list }) => {
     const { property_name, image, location, category, user_name, price, _id } = list;
     return (
         <div>
-            <div className="bg-white h-full flex flex-col justify-between  hover:shadow-lg transition p-4 max-w-sm mx-auto">
+            <div className="bg-white hover:scale-103 transition-transform duration-250 h-full flex flex-col justify-between  hover:shadow-lg  p-4 max-w-sm mx-auto">
                 {/* Thumbnail */}
                 <img
                     src={image}

@@ -29,10 +29,10 @@ const AddPropertie = () => {
             },
             body: JSON.stringify(propertyData)
         })
-        .then(res => res.json())
-        .then(data => {
-            console.log('after adding data', data)
-        })
+            .then(res => res.json())
+            .then(data => {
+                console.log('after adding data', data)
+            })
 
         // console.log(propertyData)
         e.target.reset();
