@@ -24,7 +24,7 @@ const AddPropertie = () => {
             posted_date: new Date()
 
         }
-        fetch('http://localhost:3000/lists', {
+        fetch('https://real-estate-listing-server.vercel.app/lists', {
             method: "POST",
             headers: {
                 "Content-type": "application/json",
@@ -49,7 +49,7 @@ const AddPropertie = () => {
     return (
         <Container>
             <div className="flex justify-center   items-center min-h-screen  p-6 sm:py-  px-4 pb-14">
-                <div className="w-full max-w-2xl sm:p-8 border-2 rounded-sm border-primary">
+                <div className="w-full p-4 max-w-2xl sm:p-8 border-2 rounded-sm border-primary">
                     <div className="text-center mb-8">
                         <h1 className="text-3xl font-bold text-gray-800">Add a New Property</h1>
                         <p className="text-gray-500 text-sm mt-2">

@@ -13,7 +13,7 @@ const MyProperties = () => {
 
     useEffect(() => {
 
-        fetch(`http://localhost:3000/myProperties?email=${user.email}`)
+        fetch(`https://real-estate-listing-server.vercel.app/myProperties?email=${user.email}`)
             .then((res) => res.json())
             .then((data) => {
                 setMyProperties(data);
@@ -34,7 +34,7 @@ const MyProperties = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:3000/lists/${id}`, {
+                fetch(`https://real-estate-listing-server.vercel.app/lists/${id}`, {
                     method: "DELETE",
                     headers: {
                         "Content-Type": "application/json",
@@ -101,11 +101,11 @@ const MyProperties = () => {
                                         </td>
                                         <td className="p-3 flex justify-center gap-2">
                                             <Link to={`/update/${property._id}`}>
-                                                <button className="cursor-pointer bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded-md text-sm font-medium">
+                                                <button className="cursor-pointer bg-yellow-500 h-full hover:bg-yellow-600 text-white px-3 py-1 rounded-md text-sm font-medium">
                                                     Update
                                                 </button>
                                             </Link>
-                                            <button onClick={() => handleDelete(property._id)} className="cursor-pointer bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md text-sm font-medium">
+                                            <button onClick={() => handleDelete(property._id)} className="cursor-pointer  bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md text-sm font-medium">
                                                 Delete
                                             </button>
                                             <Link to={`/allproperties/${property._id}`}>
