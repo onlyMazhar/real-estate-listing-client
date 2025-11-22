@@ -15,16 +15,17 @@ const Signup = () => {
 
     const handleSignup = (e) => {
         e.preventDefault();
-        setError("");
+        // setError("");
 
         const name = e.target.name.value;
         const photoUrl = e.target.photoUrl.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
-        if (password < 6) {
+        if (password.length < 6) {
             setError('Passowrd must be at least 6 character')
             return;
-        } if (!/[a-z]/.test(password)) {
+        }
+        if (!/[a-z]/.test(password)) {
             setError('Must include a Lowercase letter in your password')
             return;
         } if (!/[A-Z]/.test(password)) {
@@ -184,7 +185,7 @@ const Signup = () => {
                                     {showPassword ? <FaRegEye /> : <FaRegEyeSlash />}
                                 </div>
                             </div>
-                            {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+                            <p className="text-red-500 text-sm mt-2">{error}</p>
                         </div>
 
                         {/* Submit Button */}

@@ -12,6 +12,8 @@ import Page404 from "../Pages/Page404";
 import PropertyDetails from "../Pages/AllProperties/PropertyDetails";
 import Update from "../Pages/Update";
 
+//https://real-estate-listing-server.vercel.app
+
 const router = createBrowserRouter([
     {
         path: '/',
@@ -20,19 +22,19 @@ const router = createBrowserRouter([
             {
                 index: true,
                 element: <Home />,
-                loader: () => fetch('https://real-estate-listing-server.vercel.app/latest-property')
+                loader: () => fetch('http://localhost:3000/latest-property')
             },
             {
                 path: '/allproperties',
                 element: <AllProperties />,
-                loader: () => fetch('https://real-estate-listing-server.vercel.app/lists')
+                loader: () => fetch('http://localhost:3000/lists')
             },
             {
                 path: '/allproperties/:id',
                 element: <PrivateRoute>
                     <PropertyDetails />
                 </PrivateRoute>,
-                loader: ({ params }) => fetch(`https://real-estate-listing-server.vercel.app/lists/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:3000/lists/${params.id}`)
             },
             {
                 path: '/addpropertie',
@@ -45,7 +47,7 @@ const router = createBrowserRouter([
                 element: <PrivateRoute>
                     <MyProperties />
                 </PrivateRoute>,
-                loader: () => fetch(`https://real-estate-listing-server.vercel.app/lists`)
+                loader: () => fetch(`http://localhost:3000/lists`)
             },
             // {
             //     path: '/myproperties',
@@ -58,7 +60,7 @@ const router = createBrowserRouter([
                 element: <PrivateRoute>
                     <Update />
                 </PrivateRoute>,
-                loader: ({ params }) => fetch(`https://real-estate-listing-server.vercel.app/lists/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:3000/lists/${params.id}`)
 
             },
             {

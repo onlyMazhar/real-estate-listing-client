@@ -24,7 +24,7 @@ const AddPropertie = () => {
             posted_date: new Date()
 
         }
-        fetch('https://real-estate-listing-server.vercel.app/lists', {
+        fetch('http://localhost:3000/lists', {
             method: "POST",
             headers: {
                 "Content-type": "application/json",

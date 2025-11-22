@@ -12,7 +12,7 @@ const Latest = ({ data }) => {
             <PropertiesByCategory />
             <div className="pb-4 flex justify-between items-center px-4">
                 <div className='text-left'>
-                    <h1 className="text-2xl md:text-3xl font-bold text-gray-800">Latest Properties</h1>
+                    <h1 className="text-2xl md:text-3xl font-bold text-gray-800">Featured Properties</h1>
                     <p className="text-gray-500 text-sm mt-2">
                         Latest property list you may like.
                     </p>
@@ -23,7 +23,7 @@ const Latest = ({ data }) => {
                     </Link>
                 </div>
             </div>
-            <div className=' pb-10 md:pb-16 lg:pb-20  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-8'>
+            <div className='px-4 pb-10 md:pb-16 lg:pb-20  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-8'>
                 {
                     data.map(list => <AllPropertiesCard key={list._id} list={list} />)
                 }

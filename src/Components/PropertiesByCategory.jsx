@@ -27,15 +27,15 @@ const categories = [
 
 const PropertiesByCategory = () => {
     return (
-        <div className="pt-20">
+        <div className="pt-20 px-4">
             <div className=" mx-auto">
                 <div className="flex justify-between items-center    px-4">
                     <div>
-                        <h2 className="text-3xl font-bold text-gray-900 mb-2">
-                            Properties By Category
+                        <h2 className="text-2xl md:text-3xl  font-bold text-gray-900 mb-2">
+                            By Category
                         </h2>
                         <p className="text-gray-500 text-sm">
-                            Explore listings based on property types
+                            Explore  based on property types
                         </p>
                     </div>
                     <Link to="/allproperties" className="text-gray-800 font-semibold flex items-center gap-1 hover:text-yellow-600 transition">
@@ -46,13 +46,13 @@ const PropertiesByCategory = () => {
                 {/* Category Grid */}
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center py-16 md:px-12">
                     {categories.map((p) => (
-                        <div key={p.name} className="flex  items-center gap-4 bg-white rounded-xl p-4 hover:shadow-md transition cursor-pointer" >
+                        <div key={p.name} className="flex flex-col md:flex-row  items-center gap-4 bg-white rounded-xl p-4 hover:shadow-md transition cursor-pointer" >
                             <img
                                 src={p.image}
                                 alt={p.name}
                                 className="w-32 h-32 rounded-lg object-cover mb-3"
                             />
-                            <div className="text-left">
+                            <div className="md:text-left">
                                 <h3 className="text-gray-900 font-semibold">{p.name}</h3>
                                 <p className="text-gray-500 text-sm">
                                     {p.properties}{" "}
