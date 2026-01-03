@@ -27,9 +27,9 @@ const categories = [
 
 const PropertiesByCategory = () => {
     return (
-        <div className="pt-20 px-4">
+        <div className="pt-20 px-4 md:px-0">
             <div className=" mx-auto">
-                <div className="flex justify-between items-center    md:px-4">
+                <div className="flex justify-between items-center   ">
                     <div>
                         <h2 className="text-xl md:text-3xl  font-bold text-gray-900 mb-2">
                             By Category
@@ -44,13 +44,13 @@ const PropertiesByCategory = () => {
                 </div>
 
                 {/* Category Grid */}
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center pt-8 md:pt-12 pb-16 md:pb-20 md:px-12">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center pt-8 md:pt-12 pb-16 md:pb-20  ">
                     {categories.map((p) => (
-                        <div key={p.name} className="flex flex-col xl:flex-row  items-center gap-4 bg-white rounded-xl p-4 hover:shadow-md transition cursor-pointer" >
+                        <div key={p.name} className="flex flex-col xl:flex-row  items-center gap-4 bg-white rounded-md p-4 hover:shadow-md transition cursor-pointer" >
                             <img
                                 src={p.image}
                                 alt={p.name}
-                                className="w-32 h-32 rounded-lg object-cover mb-3"
+                                className="w-32 h-32 rounded-md object-cover mb-3"
                             />
                             <div className="text-center xl:text-left">
                                 <h3 className="text-gray-900 font-semibold">{p.name}</h3>

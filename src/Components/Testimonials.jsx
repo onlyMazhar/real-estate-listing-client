@@ -49,7 +49,7 @@ const Testimonials = () => {
     return (
         <Container>
             <div className="py-20">
-                <div className="max-w-7xl mx-auto px-6">
+                <div className="max-w-7xl mx-auto px-4 md:px-0">
                     {/* Header */}
                     <div className="text-center mb-12">
                         <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
@@ -65,7 +65,7 @@ const Testimonials = () => {
                         {testimonials.map((t, index) => (
                             <div
                                 key={index}
-                                className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow"
+                                className="bg-white p-6 rounded-md   hover:shadow-md transition-shadow"
                             >
                                 <h4 className="font-semibold text-lg mb-2 text-gray-900">
                                     {t.title}

@@ -47,7 +47,8 @@ const Navbar = () => {
 
     return (
         <Container>
-            <div className="navbar relative top-0 bg-transparent lg:pt-5 z-100">
+            <div className="navbar relative  px-0 bg-transparent  z-100">
+                {/* Small device */}
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -66,8 +67,9 @@ const Navbar = () => {
                             }
                         </nav>
                     </div>
-                    <Link to={'/'} className=" md:pl-2 lg:pl-2 text-xl "><img className='h-9 md:h-10 lg:14  ' src={logo} alt="" /></Link>
+                    <Link to={'/'} className="  text-xl "><img className='h-9 md:h-10 lg:14  ' src={logo} alt="" /></Link>
                 </div>
+                {/* Large device */}
                 <div className="navbar-center hidden lg:flex">
                     <nav className="menu menu-horizontal  space-x-12 text-black t">
                         <NavLink className="px-2" to={'/'}>Home</NavLink>
@@ -85,8 +87,8 @@ const Navbar = () => {
                     {
                         user
                             ? <>
-                                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                                    <div className="w-12 rounded-full border-3  border-primary">
+                                <div tabIndex={0} role="button" className="btn mr-0 btn-ghost btn-circle avatar">
+                                    <div className="w-12 rounded-full border-2  border-primary">
                                         <img
                                             title={user.email}
                                             alt={user?.displayName}

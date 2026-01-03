@@ -11,6 +11,7 @@ import PrivateRoute from "./PrivateRoute";
 import Page404 from "../Pages/Page404";
 import PropertyDetails from "../Pages/AllProperties/PropertyDetails";
 import Update from "../Pages/Update";
+import MyPropertiesSkeleton from "../Pages/MyPropertiesSkeleton";
 
 //https://real-estate-listing-server.vercel.app
 
@@ -44,7 +45,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/myproperties',
-                element: <PrivateRoute>
+                element: <PrivateRoute skeleton={MyPropertiesSkeleton}>
                     <MyProperties />
                 </PrivateRoute>,
                 loader: () => fetch(`https://real-estate-listing-server.vercel.app/lists`)

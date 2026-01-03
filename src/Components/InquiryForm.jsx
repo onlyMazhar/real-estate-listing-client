@@ -13,10 +13,10 @@ const InquiryForm = () => {
     e.target.reset()
   }
   return (
-    <section className="sm:py-12 px-4">
-      <div className="max-w-6xl py-10 md:py-16 lg:py-20 mx-auto flex flex-col gap-8 lg:flex-row overflow-hidden">
+    <div className="sm:py-12 px-4 md:px-0">
+      <div className="  py-10 md:py-16 lg:py-20 mx-auto flex flex-col gap-8 lg:flex-row overflow-hidden">
 
-        {/*Frm Section*/}
+        {/*Frm */}
         <div className="p-4 sm:p-8 lg:w-1/2 flex flex-col justify-around">
           <div className="mb-8 py-auto">
             <h2 className="text-3xl font-bold text-gray-800">Real Estate Inquiry Form </h2>
@@ -105,16 +105,16 @@ const InquiryForm = () => {
           </form>
         </div>
 
-        {/* ---------- Image Section ---------- */}
+        {/* ---------- Image  ---------- */}
         <div className="lg:w-1/2 hidden lg:block">
           <img
             src={formImg}
             alt="Property inquiry illustration"
-            className="w-full h-full rounded-lg object-cover"
+            className="w-full h-full rounded-md object-cover"
           />
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

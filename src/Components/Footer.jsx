@@ -12,9 +12,9 @@ const Footer = () => {
 
 
                     {/* Social Media Follow Section */}
-                    <div className="footer sm:footer-horizontal bg-secondary text-neutral-content items-center  p-10 md:p-6 lg:p-4">
+                    <div className="footer sm:footer-horizontal  bg-secondary text-neutral-content items-center  p-4 md:px-0">
                         <aside className="grid-flow-col items-center">
-                            <img className='h-9 md:h-10 lg:14  ' src={logo} alt="" />
+                            <img className='h-9 md:h-10 lg:h-14  ' src={logo} alt="Homenest white logo" />
                         </aside>
                         <nav className="grid-flow-col gap-4 md:place-self-center md:justify-self-end items-center">
                             <p>Follow Us</p>
@@ -75,7 +75,7 @@ const Footer = () => {
                     {/* Devider */}
                     <div className='w-[80%] h-0.5 bg-gray-700  mx-auto'></div>
                     {/* Copy right Section */}
-                    <div className="footer sm:footer-horizontal bg-secondary text-neutral-content items-center p-10 md:p-6 lg:p-4">
+                    <div className="footer sm:footer-horizontal bg-secondary text-neutral-content items-center p-4 md:px-0">
                         <aside className="grid-flow-col items-center">
 
                             <p><small>Copyright © {new Date().getFullYear()} - All right reserved</small></p>

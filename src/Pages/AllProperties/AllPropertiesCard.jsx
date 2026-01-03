@@ -5,37 +5,34 @@ import { Link } from 'react-router';
 
 const AllPropertiesCard = ({ list }) => {
     // console.log(list)
-    const { property_name, image, location, category, user_name, price, _id } = list;
+    const { property_name, image, location, category,
+        // user_name, 
+        price, _id } = list;
+
+
     return (
-         
-            <div className="bg-white w-full hover:scale-103 transition-transform duration-250  h-full flex flex-col justify-between  hover:shadow-lg  p-4 max-w-sm mx-auto ">
+        <Link to={`/allproperties/${_id}`}>
+
+            <div className="  w-full relavent rounded-md hover:scale-103 transition-transform duration-400  h-full flex flex-col justify-between  max-w-sm mx-auto ">
+                <p className=" absolute ml-2 mt-2 badge   rounded-md text-sm capetalize">{category}</p>
                 {/* Thumbnail */}
                 <img
                     src={image}
                     alt={property_name}
-                    className="w-full h-56 object-cover mb-4"
+                    className="w-full rounded-md h-56 object-cover mb-2"
                 />
-
-                {/* Info */}
-                <div className="space-y-1">
+                <div>
                     <h3 className="text-xl font-semibold text-gray-800">{property_name}</h3>
-                    <p className="text-gray-500 text-sm capitalize">{category}</p>
-                    <p className="text-yellow-600 font-bold text-lg">${price}</p>
-                    <p className="text-gray-500 text-sm flex items-center"> <FaLocationDot /> {location}</p>
-                    <p className="text-sm text-gray-600 mt-1">
-                        <span className="font-medium text-gray-700">Posted by:</span> {user_name}
-                    </p>
                 </div>
 
-                {/* Button */}
-                <Link to={`/allproperties/${_id}`}>
-                    <button
-                        className="btn mt-4 w-full bg-yellow-500 hover:bg-yellow-600 text-white py-2.5 rounded-lg font-medium transition"
-                    >
-                        See Details
-                    </button></Link>
+                <div className='flex flex-col'>
+                    {/* Info */}
+                        <p className="text-yellow-600 font-bold text-[.75rem] ">${price}</p>
+                        <p className="text-gray-500  text-[.75rem] flex items-center"> <FaLocationDot /> {location}</p>
+                </div>
             </div>
-        
+        </Link>
+
     );
 };
 

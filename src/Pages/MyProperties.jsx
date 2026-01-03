@@ -1,27 +1,28 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import Container from "../Components/Container";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const MyProperties = () => {
-    const { user, setLoading } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     const [myProperties, setMyProperties] = useState([]);
-    const data = useLoaderData();
-
-    console.log(data.result)
+    const [pageLoading, setPageLoading] = useState(true);
 
     useEffect(() => {
+        setPageLoading(true);
 
         fetch(`https://real-estate-listing-server.vercel.app/myProperties?email=${user.email}`)
             .then((res) => res.json())
             .then((data) => {
                 setMyProperties(data);
-                setLoading(false)
+                setPageLoading(false);
             })
-            .catch((err) => console.error("Error loading properties:", err));
-
-    }, [user, setLoading]);
+            .catch((err) => {
+                console.error("Error loading properties:", err);
+                setPageLoading(false);
+            });
+    }, [user?.email]);
 
     const handleDelete = (id) => {
         Swal.fire({
@@ -36,27 +37,18 @@ const MyProperties = () => {
             if (result.isConfirmed) {
                 fetch(`https://real-estate-listing-server.vercel.app/lists/${id}`, {
                     method: "DELETE",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
+                    headers: { "Content-Type": "application/json" }
                 })
                     .then((res) => res.json())
                     .then((data) => {
                         if (data.success && data.result.deletedCount > 0) {
                             Swal.fire("Deleted!", "Your property has been removed.", "success");
                             setMyProperties((prev) => prev.filter((p) => p._id !== id));
-                        } else {
-                            Swal.fire("Error!", "Failed to delete property.", "error");
                         }
-                    })
-                    .catch((err) => {
-                        console.error(err);
-                        Swal.fire("Error!", "Something went wrong.", "error");
                     });
             }
         });
     };
-
 
     return (
         <Container>
@@ -65,60 +57,123 @@ const MyProperties = () => {
                     My Property Listings
                 </h2>
 
-                {myProperties.length === 0 ? (
+                {/* ================= LOADING STATE ================= */}
+                {pageLoading && (
+                    <>
+                       
+
+                        {/* Mobile Skeleton */}
+                        <div className="md:hidden space-y-4 animate-pulse">
+                            {[...Array(5)].map((_, i) => (
+                                <div
+                                    key={i}
+                                    className="border border-gray-200 rounded-md p-4"
+                                >
+                                    <div className="h-4 bg-gray-300 rounded w-2/3 mb-2"></div>
+                                    <div className="h-4 bg-gray-300 rounded w-1/2 mb-2"></div>
+                                    <div className="h-4 bg-gray-300 rounded w-1/3"></div>
+                                </div>
+                            ))}
+                        </div>
+                    </>
+                )}
+
+                {/* ================= EMPTY STATE ================= */}
+                {!pageLoading && myProperties.length === 0 && (
                     <p className="text-center text-gray-500">
                         You haven’t posted any properties yet.
                     </p>
-                ) : (
-                    <div className="overflow-x-auto">
-                        <table className="table w-full border border-gray-200 shadow-sm">
-                            <thead className="bg-gray-100 text-gray-700">
-                                <tr>
-                                    <th className="p-3 text-left">Property Name</th>
-                                    <th className="p-3 text-left">Category</th>
-                                    <th className="p-3 text-left">Price</th>
-                                    <th className="p-3 text-left">Location</th>
-                                    <th className="p-3 text-left">Posted Date</th>
-                                    <th className="p-3 text-center">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {myProperties.map((property) => (
-                                    <tr
-                                        key={property._id}
-                                        className="border-t hover:bg-gray-50 transition"
-                                    >
-                                        <td className="p-3 font-medium text-gray-800">
-                                            {property.property_name}
-                                        </td>
-                                        <td className="p-3">{property.category}</td>
-                                        <td className="p-3 text-yellow-600 font-semibold">
-                                            ${property.price}
-                                        </td>
-                                        <td className="p-3">{property.location}</td>
-                                        <td className="p-3">
-                                            {new Date(property.posted_date).toLocaleDateString()}
-                                        </td>
-                                        <td className="p-3 flex justify-center gap-2">
-                                            <Link to={`/update/${property._id}`}>
-                                                <button className="cursor-pointer bg-yellow-500 h-full hover:bg-yellow-600 text-white px-3 py-1 rounded-md text-sm font-medium">
-                                                    Update
-                                                </button>
-                                            </Link>
-                                            <button onClick={() => handleDelete(property._id)} className="cursor-pointer  bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md text-sm font-medium">
-                                                Delete
-                                            </button>
-                                            <Link to={`/allproperties/${property._id}`}>
-                                                <button className="cursor-pointer bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded-md text-sm font-medium">
-                                                    View Details
-                                                </button>
-                                            </Link>
-                                        </td>
+                )}
+
+                {/* ================= DESKTOP TABLE ================= */}
+                {!pageLoading && myProperties.length > 0 && (
+                    <>
+                        <div className="hidden md:block overflow-x-auto">
+                            <table className="table w-full border border-gray-200 shadow-sm">
+                                <thead className="bg-gray-100 text-gray-700">
+                                    <tr>
+                                        <th className="p-3 text-left">Property Name</th>
+                                        <th className="p-3 text-left">Category</th>
+                                        <th className="p-3 text-left">Price</th>
+                                        <th className="p-3 text-left">Location</th>
+                                        <th className="p-3 text-left">Posted Date</th>
+                                        <th className="p-3 text-center">Actions</th>
                                     </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
+                                </thead>
+                                <tbody>
+                                    {myProperties.map((property) => (
+                                        <tr key={property._id} className="border-t hover:bg-gray-50">
+                                            <td className="p-3 font-medium text-gray-800">
+                                                {property.property_name}
+                                            </td>
+                                            <td className="p-3">{property.category}</td>
+                                            <td className="p-3 text-yellow-600 font-semibold">
+                                                ${property.price}
+                                            </td>
+                                            <td className="p-3">{property.location}</td>
+                                            <td className="p-3">
+                                                {new Date(property.posted_date).toLocaleDateString()}
+                                            </td>
+                                            <td className="p-3 flex justify-center gap-2">
+                                                <Link to={`/update/${property._id}`}>
+                                                    <button className="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded-md text-sm">
+                                                        Update
+                                                    </button>
+                                                </Link>
+                                                <button
+                                                    onClick={() => handleDelete(property._id)}
+                                                    className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md text-sm"
+                                                >
+                                                    Delete
+                                                </button>
+                                                <Link to={`/allproperties/${property._id}`}>
+                                                    <button className="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded-md text-sm">
+                                                        View Details
+                                                    </button>
+                                                </Link>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        {/* ================= MOBILE CARDS ================= */}
+                        <div className="md:hidden space-y-4">
+                            {myProperties.map((property) => (
+                                <div
+                                    key={property._id}
+                                    className="border border-gray-200 rounded-md p-4"
+                                >
+                                    <h3 className="font-semibold text-gray-800">
+                                        {property.property_name}
+                                    </h3>
+                                    <p className="text-sm">Category: {property.category}</p>
+                                    <p className="text-sm text-yellow-600 font-semibold">
+                                        Price: ${property.price}
+                                    </p>
+                                    <p className="text-sm">Location: {property.location}</p>
+                                    <p className="text-sm">
+                                        Posted: {new Date(property.posted_date).toLocaleDateString()}
+                                    </p>
+
+                                    <div className="flex gap-2 mt-3">
+                                        <Link to={`/update/${property._id}`}>
+                                            <button className="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded-md text-sm">
+                                                Update
+                                            </button>
+                                        </Link>
+                                        <button
+                                            onClick={() => handleDelete(property._id)}
+                                            className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md text-sm"
+                                        >
+                                            Delete
+                                        </button>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </>
                 )}
             </div>
         </Container>

@@ -2,13 +2,13 @@ import React, { use } from 'react';
 import { AuthContext } from '../Context/AuthContext';
 import { Navigate, useLocation } from 'react-router';
 
-const PrivateRoute = ({ children }) => {
+const PrivateRoute = ({ children, skeleton = null }) => {
     const { user, loading } = use(AuthContext)
     const location = useLocation();
 
 
     if (loading) {
-        return <div className='min-h-[90vh] flex items-center justify-center container mx-auto '><span className="loading loading-dots loading-xl"></span></div>
+        return skeleton ? skeleton :  <div className='min-h-[90vh] flex items-center justify-center container mx-auto '><span className="loading loading-dots loading-xl"></span></div>
     }
     if (user) {
         return children
