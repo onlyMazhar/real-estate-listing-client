@@ -7,7 +7,7 @@ const WhyUs = () => {
     return (
         <Container>
             <div className="py-20 ">
-                <div className="max-w-7xl mx-auto px-4 md:px-0 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+                <div className=" mx-auto px-4 md:px-0 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
                     {/* Left Side - Image */}
                     <div className="relative">
                         <img

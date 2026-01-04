@@ -22,8 +22,8 @@ const Banner = () => {
     const nextSlide = () => setCurrent((current + 1) % slides.length);
 
     return (
-        <Container>
-            <div className="relative  w-full overflow-hidden r shadow-2xl ">
+         
+            <div className="relative w-full top-16 overflow-hidden">
                 {/* Image Wrapper */}
                 <div
                     className="flex transition-transform duration-700 ease-in-out"
@@ -34,7 +34,7 @@ const Banner = () => {
                             <img
                                 src={src}
                                 alt={`Slide ${i + 1}`}
-                                className="w-full h-[60vh] md:h-[80vh] object-cover brightness-90"
+                                className="w-full h-[85vh]  object-cover brightness-90"
                             />
                             <div className="absolute inset-0 bg-lineer-to-t from-black/40 to-transparent"></div>
                         </div>
@@ -67,7 +67,7 @@ const Banner = () => {
                     ))}
                 </div>
             </div>
-        </Container>
+         
     );
 };
 

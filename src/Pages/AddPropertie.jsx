@@ -47,130 +47,258 @@ const AddPropertie = () => {
 
     }
     return (
+        // <Container>
+        //     <div className="flex justify-center   items-center min-h-screen  p-6 sm:py-  px-4 pb-14">
+        //         <div className="w-full p-4 max-w-2xl sm:p-8 border-2 rounded-sm border-primary">
+        //             <div className="text-center mb-8">
+        //                 <h1 className="text-3xl font-bold text-gray-800">Add a New Property</h1>
+        //                 <p className="text-gray-500 text-sm mt-2">
+        //                     Fill in the details below to list your property.
+        //                 </p>
+        //             </div>
+
+        //             <form onSubmit={propertySubmit} className="space-y-6">
+        //                 {/* Property Name */}
+        //                 <div className="form-control">
+        //                     <label className="label font-semibold text-gray-700">Property Name</label>
+        //                     <input
+        //                         type="text"
+        //                         name="name"
+        //                         placeholder="Enter property name"
+        //                         className="input input-bordered w-full bg-gray-50 border-gray-300"
+        //                         required
+        //                     />
+        //                 </div>
+
+        //                 {/* Description */}
+        //                 <div className="form-control">
+        //                     <label className="label font-semibold text-gray-700">Description</label>
+        //                     <textarea
+        //                         name="description"
+        //                         placeholder="Write a short description..."
+        //                         rows="3"
+        //                         className="textarea textarea-bordered w-full bg-gray-50 border-gray-300"
+        //                         required
+        //                     ></textarea>
+        //                 </div>
+
+        //                 {/* Category & Price */}
+        //                 <div className="flex flex-col sm:flex-row gap-4">
+        //                     <div className="form-control flex-1">
+        //                         <label className="label font-semibold text-gray-700">Category</label>
+        //                         <select
+        //                             name="category"
+        //                             className="select select-bordered w-full bg-gray-50 border-gray-300"
+        //                             defaultValue=""
+        //                             required
+        //                         >
+        //                             <option value="" disabled>
+        //                                 — Select Category —
+        //                             </option>
+        //                             <option>Rent</option>
+        //                             <option>Sale</option>
+        //                             <option>Commercial</option>
+        //                             <option>Land</option>
+        //                         </select>
+        //                     </div>
+
+        //                     <div className="form-control flex-1">
+        //                         <label className="label font-semibold text-gray-700">Price ($)</label>
+        //                         <input
+        //                             type="number"
+        //                             name="price"
+        //                             placeholder="Enter price"
+        //                             className="input input-bordered w-full bg-gray-50 border-gray-300"
+        //                             required
+        //                         />
+        //                     </div>
+        //                 </div>
+
+        //                 {/* Location */}
+        //                 <div className="form-control">
+        //                     <label className="label font-semibold text-gray-700">Location</label>
+        //                     <input
+        //                         type="text"
+        //                         name="location"
+        //                         placeholder="City, Area, or Address"
+        //                         className="input input-bordered w-full bg-gray-50 border-gray-300"
+        //                         required
+        //                     />
+        //                 </div>
+
+        //                 {/* Image Link */}
+        //                 <div className="form-control">
+        //                     <label className="label font-semibold text-gray-700">Thumbnail Image Link</label>
+        //                     <input
+        //                         type="url"
+        //                         name="image"
+        //                         placeholder="Paste image URL"
+        //                         className="input input-bordered w-full bg-gray-50 border-gray-300"
+        //                         required
+        //                     />
+        //                 </div>
+
+        //                 {/* User Info */}
+        //                 <div className="flex flex-col sm:flex-row gap-4">
+        //                     <div className="form-control flex-1">
+        //                         <label className="label font-semibold text-gray-700">User Name</label>
+        //                         <input
+        //                             value={user.displayName || ""}
+        //                             type="text"
+        //                             name="userName"
+        //                             readOnly
+        //                             className="input input-bordered w-full bg-gray-100 border-gray-300 cursor-not-allowed"
+        //                         />
+        //                     </div>
+        //                     <div className="form-control flex-1">
+        //                         <label className="label font-semibold text-gray-700">User Email</label>
+        //                         <input
+        //                             type="email"
+        //                             name="userEmail"
+        //                             readOnly
+        //                             value={user.email}
+        //                             className="input input-bordered w-full bg-gray-100 border-gray-300 cursor-not-allowed"
+        //                         />
+        //                     </div>
+        //                 </div>
+
+        //                 {/* Submit Button */}
+        //                 <div className="pt-4">
+        //                     <button
+        //                         onSubmit={propertySubmit}
+        //                         type="submit"
+        //                         className="btn bg-yellow-400 hover:bg-yellow-500 text-black font-bold w-full text-lg"
+        //                     >
+        //                         Add Property
+        //                     </button>
+        //                 </div>
+        //             </form>
+        //         </div>
+        //     </div>
+        // </Container>
         <Container>
-            <div className="flex justify-center   items-center min-h-screen  p-6 sm:py-  px-4 pb-14">
-                <div className="w-full p-4 max-w-2xl sm:p-8 border-2 rounded-sm border-primary">
-                    <div className="text-center mb-8">
+            <div className=" px-4 pt-36 py-6 md:py-12  ">
+                <div className="w-full mt-14 mx-auto max-w-5xl bg-white shadow-sm border border-gray-100 rounded-md overflow-hidden">
+
+                    {/* Header */}
+                    <div className="p-8 border-b border-gray-50 bg-gray-50/30">
                         <h1 className="text-3xl font-bold text-gray-800">Add a New Property</h1>
                         <p className="text-gray-500 text-sm mt-2">
                             Fill in the details below to list your property.
                         </p>
                     </div>
 
-                    <form onSubmit={propertySubmit} className="space-y-6">
-                        {/* Property Name */}
-                        <div className="form-control">
-                            <label className="label font-semibold text-gray-700">Property Name</label>
-                            <input
-                                type="text"
-                                name="name"
-                                placeholder="Enter property name"
-                                className="input input-bordered w-full bg-gray-50 border-gray-300"
-                                required
-                            />
-                        </div>
+                    <form onSubmit={propertySubmit} className="p-8">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
 
-                        {/* Description */}
-                        <div className="form-control">
-                            <label className="label font-semibold text-gray-700">Description</label>
-                            <textarea
-                                name="description"
-                                placeholder="Write a short description..."
-                                rows="3"
-                                className="textarea textarea-bordered w-full bg-gray-50 border-gray-300"
-                                required
-                            ></textarea>
-                        </div>
+                            {/* Left Column */}
+                            <div className="space-y-6">
+                                <div className="form-control">
+                                    <label className="label font-semibold text-gray-700">Property Name</label>
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        placeholder="Enter property name"
+                                        className="input input-bordered w-full bg-gray-50 border-gray-300 focus:border-yellow-400"
+                                        required
+                                    />
+                                </div>
 
-                        {/* Category & Price */}
-                        <div className="flex flex-col sm:flex-row gap-4">
-                            <div className="form-control flex-1">
-                                <label className="label font-semibold text-gray-700">Category</label>
-                                <select
-                                    name="category"
-                                    className="select select-bordered w-full bg-gray-50 border-gray-300"
-                                    defaultValue=""
-                                    required
+                                <div className="form-control">
+                                    <label className="label font-semibold text-gray-700">Location</label>
+                                    <input
+                                        type="text"
+                                        name="location"
+                                        placeholder="City, Area, or Address"
+                                        className="input input-bordered w-full bg-gray-50 border-gray-300 focus:border-yellow-400"
+                                        required
+                                    />
+                                </div>
+
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div className="form-control">
+                                        <label className="label font-semibold text-gray-700">Category</label>
+                                        <select
+                                            name="category"
+                                            className="select select-bordered w-full bg-gray-50 border-gray-300 focus:border-yellow-400"
+                                            defaultValue=""
+                                            required
+                                        >
+                                            <option value="" disabled>— Select —</option>
+                                            <option>Rent</option>
+                                            <option>Sale</option>
+                                            <option>Commercial</option>
+                                            <option>Land</option>
+                                        </select>
+                                    </div>
+                                    <div className="form-control">
+                                        <label className="label font-semibold text-gray-700">Price ($)</label>
+                                        <input
+                                            type="number"
+                                            name="price"
+                                            placeholder="Enter price"
+                                            className="input input-bordered w-full bg-gray-50 border-gray-300 focus:border-yellow-400"
+                                            required
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Right Column */}
+                            <div className="space-y-6">
+                                <div className="form-control">
+                                    <label className="label font-semibold text-gray-700">Thumbnail Image Link</label>
+                                    <input
+                                        type="url"
+                                        name="image"
+                                        placeholder="Paste image URL"
+                                        className="input input-bordered w-full bg-gray-50 border-gray-300 focus:border-yellow-400"
+                                        required
+                                    />
+                                </div>
+
+                                <div className="form-control">
+                                    <label className="label font-semibold text-gray-700">Description</label>
+                                    <textarea
+                                        name="description"
+                                        placeholder="Write a short description..."
+                                        rows="5"
+                                        className="textarea textarea-bordered w-full bg-gray-50 border-gray-300 focus:border-yellow-400"
+                                        required
+                                    ></textarea>
+                                </div>
+                            </div>
+
+                            {/* Full Width Bottom Section */}
+                            <div className="md:col-span-2 pt-4 border-t border-gray-100 mt-4">
+                                <div className="flex flex-col md:flex-row gap-6 mb-8">
+                                    <div className="form-control flex-1">
+                                        <label className="label font-semibold text-gray-700">User Name</label>
+                                        <input
+                                            value={user.displayName || ""}
+                                            type="text"
+                                            readOnly
+                                            className="input input-bordered w-full bg-gray-100 border-gray-200 cursor-not-allowed text-gray-500"
+                                        />
+                                    </div>
+                                    <div className="form-control flex-1">
+                                        <label className="label font-semibold text-gray-700">User Email</label>
+                                        <input
+                                            value={user.email}
+                                            type="email"
+                                            readOnly
+                                            className="input input-bordered w-full bg-gray-100 border-gray-200 cursor-not-allowed text-gray-500"
+                                        />
+                                    </div>
+                                </div>
+
+                                <button
+                                    type="submit"
+                                    className="btn bg-yellow-400 hover:bg-yellow-500 text-black font-bold w-full md:w-max md:px-12 text-lg border-none transition-all"
                                 >
-                                    <option value="" disabled>
-                                        — Select Category —
-                                    </option>
-                                    <option>Rent</option>
-                                    <option>Sale</option>
-                                    <option>Commercial</option>
-                                    <option>Land</option>
-                                </select>
+                                    Add Property
+                                </button>
                             </div>
-
-                            <div className="form-control flex-1">
-                                <label className="label font-semibold text-gray-700">Price ($)</label>
-                                <input
-                                    type="number"
-                                    name="price"
-                                    placeholder="Enter price"
-                                    className="input input-bordered w-full bg-gray-50 border-gray-300"
-                                    required
-                                />
-                            </div>
-                        </div>
-
-                        {/* Location */}
-                        <div className="form-control">
-                            <label className="label font-semibold text-gray-700">Location</label>
-                            <input
-                                type="text"
-                                name="location"
-                                placeholder="City, Area, or Address"
-                                className="input input-bordered w-full bg-gray-50 border-gray-300"
-                                required
-                            />
-                        </div>
-
-                        {/* Image Link */}
-                        <div className="form-control">
-                            <label className="label font-semibold text-gray-700">Thumbnail Image Link</label>
-                            <input
-                                type="url"
-                                name="image"
-                                placeholder="Paste image URL"
-                                className="input input-bordered w-full bg-gray-50 border-gray-300"
-                                required
-                            />
-                        </div>
-
-                        {/* User Info */}
-                        <div className="flex flex-col sm:flex-row gap-4">
-                            <div className="form-control flex-1">
-                                <label className="label font-semibold text-gray-700">User Name</label>
-                                <input
-                                    value={user.displayName || ""}
-                                    type="text"
-                                    name="userName"
-                                    readOnly
-                                    className="input input-bordered w-full bg-gray-100 border-gray-300 cursor-not-allowed"
-                                />
-                            </div>
-                            <div className="form-control flex-1">
-                                <label className="label font-semibold text-gray-700">User Email</label>
-                                <input
-                                    type="email"
-                                    name="userEmail"
-                                    readOnly
-                                    value={user.email}
-                                    className="input input-bordered w-full bg-gray-100 border-gray-300 cursor-not-allowed"
-                                />
-                            </div>
-                        </div>
-
-                        {/* Submit Button */}
-                        <div className="pt-4">
-                            <button
-                                onSubmit={propertySubmit}
-                                type="submit"
-                                className="btn bg-yellow-400 hover:bg-yellow-500 text-black font-bold w-full text-lg"
-                            >
-                                Add Property
-                            </button>
                         </div>
                     </form>
                 </div>

@@ -22,7 +22,7 @@ const AllProperties = () => {
     }
     return (
         <Container>
-            <div className='text-center pt-15 px-4 xl:max-w-2/5 md:max-w-4/5 max-w-5/5 mx-auto'>
+            <div className='text-center pt-24  top-16 px-4 xl:max-w-2/5 md:max-w-4/5 max-w-5/5 mx-auto'>
                 <h3 className='text-3xl font-bold text-gray-800'>
                     Explore Our Latest Properties
                 </h3>
@@ -30,7 +30,7 @@ const AllProperties = () => {
                     Discover handpicked homes, apartments, and villas that match your lifestyle and budget — all verified and ready for you.
                 </p>
             </div>
-            <form onSubmit={handleSearch} className='py-10 text-right px-4 flex  justify-end'>
+            <form onSubmit={handleSearch} className='py-10 text-right px-4 md:px-0 flex  justify-end'>
                 <label className="input border border-primary">
                     <svg className="h-[1em] opacity-50 text-primary " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <g
@@ -49,7 +49,7 @@ const AllProperties = () => {
                 <button className='btn btn-primary ml-2 text-white'>Search</button>
 
             </form >
-            <div className=' pb-10 md:pb-16 lg:pb-20  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-4'>
+            <div className=' pb-10 md:pb-16 lg:pb-20  grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-4 lg:px-0'>
                 {
                     property.map(list => <AllPropertiesCard key={list._id} list={list} />)
                 }

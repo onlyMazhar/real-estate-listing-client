@@ -2,7 +2,10 @@ import React, { useEffect, useContext, useState } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import Container from "../Components/Container";
 import { Link } from "react-router-dom";
+import { Trash, Info, SquarePen } from 'lucide-react';
 import Swal from "sweetalert2";
+import MyPropertiesSkeleton from "./MyPropertiesSkeleton";
+
 
 const MyProperties = () => {
     const { user } = useContext(AuthContext);
@@ -52,31 +55,13 @@ const MyProperties = () => {
 
     return (
         <Container>
-            <div className="pt-10">
+            <div className="pt-24">
                 <h2 className="text-3xl font-bold text-gray-800 text-center mb-8">
                     My Property Listings
                 </h2>
 
                 {/* ================= LOADING STATE ================= */}
-                {pageLoading && (
-                    <>
-                       
-
-                        {/* Mobile Skeleton */}
-                        <div className="md:hidden space-y-4 animate-pulse">
-                            {[...Array(5)].map((_, i) => (
-                                <div
-                                    key={i}
-                                    className="border border-gray-200 rounded-md p-4"
-                                >
-                                    <div className="h-4 bg-gray-300 rounded w-2/3 mb-2"></div>
-                                    <div className="h-4 bg-gray-300 rounded w-1/2 mb-2"></div>
-                                    <div className="h-4 bg-gray-300 rounded w-1/3"></div>
-                                </div>
-                            ))}
-                        </div>
-                    </>
-                )}
+                {pageLoading && <MyPropertiesSkeleton/>}
 
                 {/* ================= EMPTY STATE ================= */}
                 {!pageLoading && myProperties.length === 0 && (
@@ -88,7 +73,7 @@ const MyProperties = () => {
                 {/* ================= DESKTOP TABLE ================= */}
                 {!pageLoading && myProperties.length > 0 && (
                     <>
-                        <div className="hidden md:block overflow-x-auto">
+                        <div className="hidden lg:block overflow-x-auto">
                             <table className="table w-full border border-gray-200 shadow-sm">
                                 <thead className="bg-gray-100 text-gray-700">
                                     <tr>
@@ -115,21 +100,19 @@ const MyProperties = () => {
                                                 {new Date(property.posted_date).toLocaleDateString()}
                                             </td>
                                             <td className="p-3 flex justify-center gap-2">
-                                                <Link to={`/update/${property._id}`}>
-                                                    <button className="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded-md text-sm">
-                                                        Update
-                                                    </button>
+                                                <Link title="Update Info" to={`/update/${property._id}`}>
+                                                    <SquarePen className="text-yellow-500 hover:text-yellow-600" size={18} />
                                                 </Link>
                                                 <button
                                                     onClick={() => handleDelete(property._id)}
-                                                    className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md text-sm"
+                                                    title="Delete Property"
                                                 >
-                                                    Delete
+                                                    <Trash
+                                                        className="text-red-500 cursor-pointer hover:text-red-60  "
+                                                        size={18} />
                                                 </button>
-                                                <Link to={`/allproperties/${property._id}`}>
-                                                    <button className="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded-md text-sm">
-                                                        View Details
-                                                    </button>
+                                                <Link title="Details" to={`/allproperties/${property._id}`}>
+                                                    <Info className="text-yellow-500 hover:text-yellow-600" size={20} />
                                                 </Link>
                                             </td>
                                         </tr>
@@ -139,11 +122,11 @@ const MyProperties = () => {
                         </div>
 
                         {/* ================= MOBILE CARDS ================= */}
-                        <div className="md:hidden space-y-4">
+                        <div className="lg:hidden   grid grid-cols-1 md:grid-cols-2 gap-6">
                             {myProperties.map((property) => (
                                 <div
                                     key={property._id}
-                                    className="border border-gray-200 rounded-md p-4"
+                                    className="border border-gray-200 bg-white rounded-md p-4"
                                 >
                                     <h3 className="font-semibold text-gray-800">
                                         {property.property_name}
@@ -158,17 +141,20 @@ const MyProperties = () => {
                                     </p>
 
                                     <div className="flex gap-2 mt-3">
-                                        <Link to={`/update/${property._id}`}>
-                                            <button className="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded-md text-sm">
-                                                Update
-                                            </button>
+                                        <Link title="Update Info" to={`/update/${property._id}`}>
+                                            <SquarePen className="text-yellow-500 hover:text-yellow-600" size={18} />
                                         </Link>
                                         <button
                                             onClick={() => handleDelete(property._id)}
-                                            className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md text-sm"
+                                            title="Delete Property"
                                         >
-                                            Delete
+                                            <Trash
+                                                className="text-red-500 cursor-pointer hover:text-red-60  "
+                                                size={18} />
                                         </button>
+                                        <Link title="Details" to={`/allproperties/${property._id}`}>
+                                            <Info className="text-yellow-500 hover:text-yellow-600" size={20} />
+                                        </Link>
                                     </div>
                                 </div>
                             ))}
