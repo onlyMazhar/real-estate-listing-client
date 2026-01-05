@@ -13,8 +13,8 @@ const InquiryForm = () => {
     e.target.reset()
   }
   return (
-    <div className="sm:py-12 px-4 md:px-0">
-      <div className="  py-10 md:py-16 lg:py-20 mx-auto flex flex-col gap-8 lg:flex-row overflow-hidden">
+    <div className=" pt-20 pb-40 px-4 md:px-0">
+      <div className="  mx-auto flex flex-col gap-8 lg:flex-row overflow-hidden">
 
         {/*Frm */}
         <div className="p-4 sm:p-8 lg:w-1/2 flex flex-col justify-around">

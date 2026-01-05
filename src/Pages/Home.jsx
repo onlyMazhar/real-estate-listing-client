@@ -6,6 +6,10 @@ import InquiryForm from '../Components/InquiryForm';
 import Latest from '../Components/Latest';
 import { useLoaderData } from 'react-router';
 import Container from '../Components/Container';
+import PopularLocations from '../Components/PopularLocations';
+import HowItWorks from '../Components/HowItWorks';
+import Statistics from '../Components/Statistics';
+import FAQ from '../Components/FAQ';
 
 const Home = () => {
     const data = useLoaderData()
@@ -16,8 +20,12 @@ const Home = () => {
             <Banner />
             <Container>
                 <Latest data={data} />
+                <PopularLocations/>
                 <WhyUs />
+                <HowItWorks/>
+                <Statistics/>
                 <Testimonials />
+                <FAQ/>
                 <InquiryForm />
             </Container>
 

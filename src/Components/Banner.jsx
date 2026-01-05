@@ -34,7 +34,7 @@ const Banner = () => {
                             <img
                                 src={src}
                                 alt={`Slide ${i + 1}`}
-                                className="w-full h-[85vh]  object-cover brightness-90"
+                                className="w-full h-[75vh]  object-cover  brightness-90"
                             />
                             <div className="absolute inset-0 bg-lineer-to-t from-black/40 to-transparent"></div>
                         </div>

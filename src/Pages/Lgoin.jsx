@@ -28,7 +28,7 @@ const Registration = () => {
                     pauseOnHover: true,
                     draggable: true,
                     progress: undefined,
-                    theme: "colored",   
+                    theme: "colored",
                     transition: Bounce,
                 });
             })
@@ -86,7 +86,7 @@ const Registration = () => {
         <>
             <title>Home Nest - Login</title>
             <div className="flex justify-center items-center bg-gray-100 p-6 pt-20 sm:p-8 lg:p-12 ">
-                <div className="  w-full max-w-lg   p-4 sm:p-8 border-2 rounded-sm border-primary">
+                <div className=" mt-12 w-full max-w-lg   p-4 sm:p-8 border-2 rounded-sm border-primary">
                     {/* Header */}
                     <div className="mb-8 text-center">
                         <h2 className="text-3xl font-bold text-gray-800">Login</h2>

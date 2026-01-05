@@ -24,12 +24,12 @@ const Footer = () => {
                             <a><FaLinkedinIn /></a>
                         </nav>
                     </div>
-
-                    {/* Devider */}
-                    <div className='w-[80%] h-0.5 bg-gray-700  mx-auto'></div>
-
+                </Container>
+                {/* Devider */}
+                <div className='h-0.5 bg-gray-700  mx-auto'></div>
+                <Container>
                     {/* Links Section */}
-                    <div className="footer  sm:footer-horizontal bg-secondary text-white  p-10">
+                    <div className="footer  sm:footer-horizontal bg-secondary text-white  p-4 md:px-0">
 
                         <nav>
                             <h6 className="footer-title">Popular Search</h6>
@@ -72,8 +72,10 @@ const Footer = () => {
                             </fieldset>
                         </form>
                     </div>
-                    {/* Devider */}
-                    <div className='w-[80%] h-0.5 bg-gray-700  mx-auto'></div>
+                </Container>
+                {/* Devider */}
+                <div className='h-0.5 bg-gray-700  mx-auto'></div>
+                <Container>
                     {/* Copy right Section */}
                     <div className="footer sm:footer-horizontal bg-secondary text-neutral-content items-center p-4 md:px-0">
                         <aside className="grid-flow-col items-center">

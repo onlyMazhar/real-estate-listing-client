@@ -27,9 +27,9 @@ const categories = [
 
 const PropertiesByCategory = () => {
     return (
-        <div className="pt-20 px-4 md:px-0">
+        <div className="pt-26   px-4 md:px-0 pb-10">
             <div className=" mx-auto">
-                <div className="flex justify-between items-center   ">
+                <div className="flex justify-between items-center   pb-4">
                     <div>
                         <h2 className="text-xl md:text-3xl  font-bold text-gray-900 mb-2">
                             By Category
@@ -44,7 +44,7 @@ const PropertiesByCategory = () => {
                 </div>
 
                 {/* Category Grid */}
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center pt-8 md:pt-12 pb-16 md:pb-20  ">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center  ">
                     {categories.map((p) => (
                         <div key={p.name} className="flex flex-col xl:flex-row  items-center gap-4 bg-white rounded-md p-4 hover:shadow-md transition cursor-pointer" >
                             <img

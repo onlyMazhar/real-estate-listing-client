@@ -1,22 +1,30 @@
-import React from 'react';
-import { Link, Outlet } from 'react-router';
+import { Link, Outlet, } from 'react-router';
 import { EditIcon, Home, LayoutDashboard, Settings } from 'lucide-react';
+ import UserProfile from '../../Components/UserProfile';
 
 
 const Dashboard = () => {
+   
     return (
         <div className="drawer lg:drawer-open">
             <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content">
 
                 {/* Navbar */}
-                <nav className="navbar w-full bg-secondary text-white text-3xl font-bold">
-                    <label htmlFor="my-drawer-4" aria-label="open sidebar" className="btn btn-square btn-ghost">
-                        {/* Sidebar toggle icon */}
-                        <LayoutDashboard />
-                    </label>
-                    <div className="px-4">Navbar Title</div>
+                <nav className="navbar w-full bg-secondary flex justify-between text-white text-3xl font-bold ">
+                    <div className='flex '>
+                        <label htmlFor="my-drawer-4" aria-label="open sidebar" className="btn btn-square btn-ghost">
+                            {/* Sidebar toggle icon */}
+                            <LayoutDashboard />
+                        </label>
+                        <div className="px-4">Navbar Title</div>
+                    </div>
+                    {/*  */}
+                    <div className='mr-5.5 pb-0 -mb-1.5'>
+                        <UserProfile />
+                    </div>
                 </nav>
+
 
                 {/* Page content here */}
                 <Outlet />

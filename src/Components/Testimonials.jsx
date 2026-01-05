@@ -47,15 +47,15 @@ const testimonials = [
 
 const Testimonials = () => {
     return (
-        <Container>
+         
             <div className="py-20">
                 <div className=" mx-auto px-4 md:px-0">
                     {/* Header */}
-                    <div className="text-center mb-12">
-                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+                    <div className="text-center mb-16">
+                        <h2 className="text-4xl font-extrabold mb-4">
                             People Love Living with HomeNest
                         </h2>
-                        <p className="text-gray-500 mt-2">
+                        <p className="text-gray-400 max-w-2xl mx-auto">
                             Real stories from people who found their perfect home through us.
                         </p>
                     </div>
@@ -65,7 +65,7 @@ const Testimonials = () => {
                         {testimonials.map((t, index) => (
                             <div
                                 key={index}
-                                className="bg-white p-6 rounded-md   hover:shadow-md transition-shadow"
+                                className="bg-white p-6 rounded-md   hover:scale-105 transition-all duration-300 shadow-md hover:shadow-xl "
                             >
                                 <h4 className="font-semibold text-lg mb-2 text-gray-900">
                                     {t.title}
@@ -98,7 +98,7 @@ const Testimonials = () => {
                     </div>
                 </div>
             </div>
-        </Container>
+         
     );
 };
 

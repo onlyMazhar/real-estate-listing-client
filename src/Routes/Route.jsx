@@ -13,6 +13,7 @@ import PropertyDetails from "../Pages/AllProperties/PropertyDetails";
 import Update from "../Pages/Update";
 import MyPropertiesSkeleton from "../Pages/MyPropertiesSkeleton";
 import Dashboard from "../Pages/Admin/Dashboard";
+import Profile from "../Pages/Admin/Profile";
 
 //https://real-estate-listing-server.vercel.app
 
@@ -84,7 +85,15 @@ const router = createBrowserRouter([
         path: '/dashboard',
         element: <PrivateRoute>
             <Dashboard />
-        </PrivateRoute>
+        </PrivateRoute>,
+        children: [
+            {
+                index: true,
+                path: '/dashboard/profile',
+                element: <Profile />,
+            }
+        ]
+
     },
 ])
 
