@@ -3,207 +3,184 @@ import { Link, useNavigate } from "react-router";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../Context/AuthContext";
 import { Bounce, toast } from "react-toastify";
-import Swal from "sweetalert2";
+import { useForm } from "react-hook-form";
+import { addOrUpdate } from "../Utils";
 
 const Signup = () => {
-    const [error, setError] = useState("");
     const [showPassword, setShowPassword] = useState(false);
-    const { createUser, loginWithGooGle, setUser, updateUser } = use(AuthContext)
-    // const location = useLocation();
-    const navigate = useNavigate()
-    // console.log(createUser)
+    const { createUser, loginWithGooGle, updateUser } = use(AuthContext);
+    const navigate = useNavigate();
 
-    const handleSignup = (e) => {
-        e.preventDefault();
-        // setError("");
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm();
 
-        const name = e.target.name.value;
-        const photoUrl = e.target.photoUrl.value;
-        const email = e.target.email.value;
-        const password = e.target.password.value;
-        if (password.length < 6) {
-            setError('Passowrd must be at least 6 character')
-            return;
+    const emailRegex =
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    const passwordRegex =
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
+
+    const handleSignup = async (data) => {
+        const { name, photoUrl, email, password } = data;
+
+        try {
+            const result = await createUser(email, password);
+            const user = result.user;
+
+            await updateUser({
+                displayName: name,
+                photoURL: photoUrl,
+            });
+
+            await addOrUpdate({
+                email: user.email,
+                name,
+                image: photoUrl,
+                createdAt: new Date(),
+            });
+
+            toast.success("Registration successful!", {
+                position: "top-center",
+                autoClose: 2000,
+            });
+
+            navigate("/");
+        } catch (err) {
+            console.error(err);
+            toast.error(err.message || "Signup failed", {
+                position: "top-right",
+                transition: Bounce,
+            });
         }
-        if (!/[a-z]/.test(password)) {
-            setError('Must include a Lowercase letter in your password')
-            return;
-        } if (!/[A-Z]/.test(password)) {
-            setError('Must include an Uppercase letter in your password')
-            return;
-        }
-
-        createUser(email, password)
-            .then(result => {
-                // console.log(result.user)
-                const user = result.user;
-                updateUser({ displayName: name, photoURL: photoUrl })
-                    .then(() => {
-                        setUser({ ...user, displayName: name, photoURL: photoUrl })
-                    })
-                    .catch(error => {
-                        // console.log(error)
-                        toast.error(`${error}`, {
-                            position: "top-right",
-                            autoClose: 5000,
-                            hideProgressBar: false,
-                            closeOnClick: false,
-                            pauseOnHover: true,
-                            draggable: true,
-                            progress: undefined,
-                            theme: "light",
-                            transition: Bounce,
-                        });
-                        setUser(user)
-                    })
-                navigate('/')
-                toast.success('Registration Successfull!', {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: false,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "colored",
-                    transition: Bounce,
-                });
-            })
-            .catch(error => {
-                // console.log(error.message)
-                Swal.fire({
-                    icon: "error",
-                    title: "Update Failed!",
-                    text: error.message,
-                });
-            })
-
-
-        // console.log(name, photoUrl, email, password);
     };
 
-    const handleGoogleSignIn = () => {
-        loginWithGooGle()
-            .then(() => {
-                // console.log(result.user)
-                navigate('/')
-                toast.success('Registration Successfull!!', {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: false,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "colored",
-                    transition: Bounce,
-                });
+    const handleGoogleSignIn = async () => {
+        try {
+            const result = await loginWithGooGle();
+            const user = result.user;
 
-            })
-            .catch(error => {
-                toast.error(`${error.message}`, {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: false,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                    transition: Bounce,
-                });
-            })
-    }
+            await addOrUpdate({
+                email: user.email,
+                name: user.displayName,
+                image: user.photoURL,
+                createdAt: new Date(),
+            });
+
+            toast.success("Login successful!", {
+                position: "top-center",
+                autoClose: 2000,
+            });
+
+            navigate("/");
+        } catch (err) {
+            toast.error(err.message, {
+                position: "top-right",
+                transition: Bounce,
+            });
+        }
+    };
 
     return (
         <>
             <title>Home Nest - Register</title>
 
-            <div className="flex justify-center items-center   bg-gray-100 p-6 sm:p-8 lg:p-16">
-                <div className="mt-12  w-full max-w-lg  p-4 sm:px-8 border-2 rounded-sm border-primary">
-                    {/* Header */}
+            <div className="flex justify-center items-center bg-gray-100 p-6 lg:p-16">
+                <div className="mt-12 w-full max-w-lg p-4 sm:px-8 border-2 rounded-sm border-primary">
                     <div className="mb-8 text-center">
                         <h2 className="text-3xl font-bold text-gray-800">Create an Account</h2>
                         <p className="text-gray-500 mt-2 text-sm">
-                            Register now to access all exclusive properties and manage your listings easily.
+                            Register now to access all exclusive properties.
                         </p>
                     </div>
 
-                    {/* Form */}
-                    <form onSubmit={handleSignup} className="space-y-6">
-                        {/* Full Name */}
-                        <div className="form-control">
-                            <label className="label font-semibold text-gray-700">Full Name</label>
+                    <form onSubmit={handleSubmit(handleSignup)} className="space-y-6">
+                        {/* Name */}
+                        <div>
+                            <label className="label font-semibold">Full Name</label>
                             <input
-                                name="name"
-                                type="text"
+                                {...register("name", { required: "Name is required" })}
+                                className="input input-bordered w-full"
                                 placeholder="Your full name"
-                                className="input input-bordered w-full bg-gray-50 border-gray-300 focus:ring-2 focus:ring-yellow-400"
-                                required
                             />
+                            {errors.name && (
+                                <p className="text-red-500 text-sm">{errors.name.message}</p>
+                            )}
                         </div>
 
-                        {/* Photo URL */}
-                        <div className="form-control">
-                            <label className="label font-semibold text-gray-700">Photo URL</label>
+                        {/* Photo */}
+                        <div>
+                            <label className="label font-semibold">Photo URL</label>
                             <input
-                                name="photoUrl"
-                                type="text"
-                                placeholder="Paste your photo URL"
-                                className="input input-bordered w-full bg-gray-50 border-gray-300 focus:ring-2 focus:ring-yellow-400"
-                                required
+                                {...register("photoUrl", { required: "Photo URL is required" })}
+                                className="input input-bordered w-full"
+                                placeholder="Photo URL"
                             />
+                            {errors.photoUrl && (
+                                <p className="text-red-500 text-sm">{errors.photoUrl.message}</p>
+                            )}
                         </div>
 
                         {/* Email */}
-                        <div className="form-control">
-                            <label className="label font-semibold text-gray-700">Email</label>
+                        <div>
+                            <label className="label font-semibold">Email</label>
                             <input
-                                name="email"
-                                type="email"
+                                {...register("email", {
+                                    required: "Email is required",
+                                    pattern: {
+                                        value: emailRegex,
+                                        message: "Enter a valid email",
+                                    },
+                                })}
+                                className="input input-bordered w-full"
                                 placeholder="example@email.com"
-                                className="input input-bordered w-full bg-gray-50 border-gray-300 focus:ring-2 focus:ring-yellow-400"
-                                required
                             />
+                            {errors.email && (
+                                <p className="text-red-500 text-sm">{errors.email.message}</p>
+                            )}
                         </div>
 
                         {/* Password */}
-                        <div className="form-control">
-                            <label className="label font-semibold text-gray-700">Password</label>
+                        <div>
+                            <label className="label font-semibold">Password</label>
                             <div className="relative">
                                 <input
-                                    name="password"
+                                    {...register("password", {
+                                        required: "Password is required",
+                                        pattern: {
+                                            value: passwordRegex,
+                                            message:
+                                                "Min 6 chars, uppercase, lowercase, number & special char",
+                                        },
+                                    })}
                                     type={showPassword ? "text" : "password"}
-                                    placeholder="Enter password"
-                                    className="input input-bordered w-full bg-gray-50 border-gray-300 focus:ring-2 focus:ring-yellow-400 pr-10"
-                                    required
+                                    className="input input-bordered w-full pr-10"
                                 />
-                                <div
-                                    className="absolute right-3 top-3.5 text-gray-500 cursor-pointer"
+                                <span
+                                    className="absolute right-3 top-3 cursor-pointer"
                                     onClick={() => setShowPassword(!showPassword)}
                                 >
                                     {showPassword ? <FaRegEye /> : <FaRegEyeSlash />}
-                                </div>
+                                </span>
                             </div>
-                            <p className="text-red-500 text-sm mt-2">{error}</p>
+                            {errors.password && (
+                                <p className="text-red-500 text-sm">{errors.password.message}</p>
+                            )}
                         </div>
 
-                        {/* Submit Button */}
-                        <div className="pt-2">
-                            <button
-                                type="submit"
-                                className="btn btn-primary w-full text-black font-bold text-lg"
-                            >
-                                SignUP
-                            </button>
-                        </div>
+                        <button className="btn btn-primary w-full text-black font-bold">
+                            Sign Up
+                        </button>
                     </form>
 
-                    {/* Divider */}
-                    <div className="my-6 text-center text-gray-400 text-sm">— or —</div>
+                    <div className="my-6 text-center text-gray-400">— or —</div>
 
-                    {/* Google Login */}
-                    <button onClick={handleGoogleSignIn} className="btn flex items-center justify-center gap-2 w-full border border-gray-300 text-gray-800 py-3 rounded-lg hover:bg-gray-100 transition">
+                    <button
+                        onClick={handleGoogleSignIn}
+                        className="btn flex items-center justify-center gap-2 w-full border border-gray-300 text-gray-800 py-3 rounded-lg hover:bg-gray-100 transition"
+                    >
                         <svg
                             aria-label="Google logo"
                             width="18"
@@ -234,13 +211,9 @@ const Signup = () => {
                         Continue with Google
                     </button>
 
-                    {/* Footer */}
-                    <p className="text-sm text-center mt-6 text-gray-600">
+                    <p className="text-sm text-center mt-6">
                         Already have an account?{" "}
-                        <Link
-                            to="/login"
-                            className="text-yellow-500 font-semibold hover:text-yellow-600"
-                        >
+                        <Link to="/login" className="text-yellow-500 font-semibold">
                             Login
                         </Link>
                     </p>

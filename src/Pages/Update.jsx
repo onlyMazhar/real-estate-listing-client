@@ -23,7 +23,7 @@ const Update = () => {
             image: e.target.image.value,
         };
 
-        fetch(`https://real-estate-listing-server.vercel.app/lists/${property._id}`, {
+        fetch(`https://localhost:3000/lists/${property._id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(propertyData)

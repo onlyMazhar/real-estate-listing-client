@@ -30,37 +30,33 @@ const Statistics = () => {
     ];
 
     return (
-        <div className="py-20  text-white">
+        <div className="py-20">
             <div className=" mx-auto px-4 lg:px-0">
                 {/* Header */}
                 <div className="text-center mb-16">
-                    <h2 className="text-4xl text-slate-900 font-black mb-4">
+                    <h2 className="text-4xl text-base-content font-black mb-4">
                         Trusted by Thousands
                     </h2>
-                    <p className="text-slate-400">
+                    <p className="text-base-content opacity-70">
                         Numbers that show our growth and reliability
                     </p>
                 </div>
 
                 {/* Stats Grid */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6   ">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 ">
                     {stats.map((stat) => (
                         <div
                             key={stat.id}
-                            className="group bg-slate-800 border border-slate-700 rounded-md p-8 text-center hover:border-yellow-500 hover:scale-105 transition-all duration-300 shadow-xl"
+                            className="group bg-base-200 border border-base-300 rounded-md p-8 text-center hover:border-primary hover:scale-105 transition-all duration-300 shadow-xl"
                         >
-                            {/* Icon */}
-                            <div className="w-16 h-16 mx-auto mb-6 rounded-xl bg-yellow-500/10 flex items-center justify-center text-yellow-400 group-hover:bg-yellow-500 group-hover:text-black transition">
+                            <div className="w-16 h-16 mx-auto mb-6 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-secondary transition">
                                 {React.cloneElement(stat.icon, { size: 32 })}
                             </div>
 
-                            {/* Number */}
-                            <h3 className="text-4xl font-extrabold mb-2">
+                            <h3 className="text-4xl font-extrabold mb-2 text-base-content">
                                 {stat.value}
                             </h3>
-
-                            {/* Label */}
-                            <p className="text-slate-400 text-sm uppercase tracking-wide">
+                            <p className="text-base-content opacity-60 text-sm uppercase tracking-wide">
                                 {stat.label}
                             </p>
                         </div>

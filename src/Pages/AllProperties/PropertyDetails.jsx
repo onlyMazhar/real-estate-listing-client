@@ -13,7 +13,7 @@ const PropertyDetails = () => {
 
     return (
         <Container>
-            <div className=" mx-auto px-4 lg:px-0 py-10">
+            <div className=" mx-auto px-4 pt-16 lg:px-0 py-10">
                 <img
                     src={property.image}
                     alt={property.property_name}
@@ -21,22 +21,30 @@ const PropertyDetails = () => {
                 />
 
                 <div className="mt-6 space-y-3">
-                    <h1 className="text-3xl font-bold text-gray-800">
+                    {/* Changed text-gray-800 to text-base-content */}
+                    <h1 className="text-3xl font-bold text-base-content">
                         {property.property_name}
-                        <sup className="text-sm animate-bounce badge bg-primary"> {property.category}</sup>
+                        {/* Added text-secondary to make badge text readable on yellow */}
+                        <sup className="text-sm animate-bounce badge bg-primary border-none text-secondary"> {property.category}</sup>
                     </h1>
-                    <p className="text-gray-600 text-sm flex items-center gap-2">
+                    {/* Changed text-gray-600 to opacity-70 text-base-content */}
+                    <p className="text-base-content opacity-70 text-sm flex items-center gap-2">
                         <FaLocationDot /> {property.location}
                     </p>
-                    <p className="text-lg font-semibold text-yellow-600">
+                    {/* Changed text-yellow-600 to text-primary */}
+                    <p className="text-lg font-semibold text-primary">
                         ${property.price}
                     </p>
 
-                    <p className="text-gray-700 mt-4">{property.description}</p>
+                    {/* Changed text-gray-700 to text-base-content */}
+                    <p className="text-base-content mt-4 leading-relaxed">{property.description}</p>
 
-                    <p className="text-gray-600 mt-3"> <span className="font-medium text-gray-700">Property owner mail: </span> {property.user_email}</p>
-                    <p className="text-gray-600 mt-3">
-                        <span className="font-medium text-gray-700">Property owner:</span>{" "}
+                    {/* Updated labels and values to use theme-aware colors */}
+                    <p className="text-base-content opacity-70 mt-3">
+                        <span className="font-medium text-base-content">Property owner mail: </span> {property.user_email}
+                    </p>
+                    <p className="text-base-content opacity-70 mt-3">
+                        <span className="font-medium text-base-content">Property owner:</span>{" "}
                         {property.user_name}
                     </p>
                 </div>
@@ -44,7 +52,8 @@ const PropertyDetails = () => {
                 <div className="mt-6">
                     <Link
                         to="/allproperties"
-                        className="btn bg-yellow-500 hover:bg-yellow-600 text-white"
+                        /* Swapped bg-yellow-500 for bg-primary and text-white for text-secondary */
+                        className="btn bg-primary hover:bg-yellow-500 border-none text-secondary font-bold"
                     >
                         Back to All Properties
                     </Link>

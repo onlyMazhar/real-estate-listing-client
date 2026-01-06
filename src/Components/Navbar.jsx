@@ -3,14 +3,16 @@ import { Link, NavLink } from 'react-router';
 import logo from '../assets/logo-colored.png'
 import Container from './Container';
 import { AuthContext } from "../Context/AuthContext";
-import { Menu } from 'lucide-react';
+import { Menu, Moon, Sun } from 'lucide-react';
 import UserProfile from './UserProfile';
+import { ThemeContext } from '../Context/ThemeContext';
 
 
 
 const Navbar = () => {
 
     const { user } = use(AuthContext)
+    const { theme, toggleTheme } = use(ThemeContext);
     const links = <>
         <NavLink className="px-2" to={'/'}>Home</NavLink>
         <NavLink className="px-2" to={'/allproperties'}> All Properties</NavLink>
@@ -22,10 +24,23 @@ const Navbar = () => {
 
             </>
         }
+        {/* dark teke switch toggle */}
+        <div className='ml-2 lg:ml-0'>
+            <label className="swap  md:ml-0 swap-rotate self-start">
+            <input
+                type="checkbox"
+                onChange={toggleTheme}
+                checked={theme === "dark"}
+            />
+            <Sun className="swap-off h-5 w-5 text-warning" />
+            <Moon className="swap-on h-5 w-5 text-primary" />
+        </label>
+        </div>
+
     </>
 
     // console.log("User Photo URL:", user?.photoURL);
- 
+
 
     return (
         <div className='bg-secondary fixed w-full z-50 '>
@@ -36,7 +51,7 @@ const Navbar = () => {
                     <div className="navbar-start">
                         <div className="dropdown">
                             <div tabIndex={0} role="button" className="text-white btn btn-ghost lg:hidden">
-                                <Menu/>
+                                <Menu />
                             </div>
                             <nav
                                 tabIndex="-1"
@@ -53,7 +68,7 @@ const Navbar = () => {
                         </nav>
                     </div>
                     <div className="dropdown   dropdown-end navbar-end space-x-4 pr-4 md:pr-0 ">
-                        <UserProfile/>
+                        <UserProfile />
                     </div>
                 </div>
             </Container>

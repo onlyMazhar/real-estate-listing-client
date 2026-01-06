@@ -32,12 +32,14 @@ const HowItWorks = () => {
     return (
         <div className="py-20 overflow-hidden">
             <div className=" mx-auto px-4 lg:px-0">
-                {/*  Header */}
+                {/* Header */}
                 <div className="text-center mb-16">
-                    <h2 className="text-4xl font-black text-slate-900 mb-4">
+                    {/* Changed text-slate-900 to text-base-content */}
+                    <h2 className="text-4xl font-black text-base-content mb-4">
                         How It Works
                     </h2>
-                    <p className="text-slate-500">
+                    {/* Changed text-slate-500 to opacity-70 text-base-content */}
+                    <p className="text-base-content opacity-70">
                         Finding the right property is simple and hassle-free.
                     </p>
                 </div>
@@ -45,8 +47,9 @@ const HowItWorks = () => {
                 {/* Steps */}
                 <div className="relative flex flex-col md:flex-row justify-between items-start gap-8">
                     {/* Connector Line (Desktop Only) */}
-                    <div className="hidden md:block absolute top-12 left-0 w-full h-0.5 bg-slate-100 z-0">
-                        <div className="h-full bg-yellow-500 animate-pulse"></div>
+                    {/* Changed bg-slate-100 to bg-base-300 and bg-yellow-500 to bg-primary */}
+                    <div className="hidden md:block absolute top-12 left-0 w-full h-0.5 bg-base-300 z-0">
+                        <div className="h-full bg-primary animate-pulse"></div>
                     </div>
 
                     {steps.map((step) => (
@@ -55,20 +58,24 @@ const HowItWorks = () => {
                             className="relative z-10 flex flex-col items-center text-center group w-full"
                         >
                             {/* Icon */}
-                            <div className="w-24 h-24 rounded-3xl  border-2 border-slate-100 flex items-center justify-center bg-secondary text-yellow-500 mb-6 group-hover:bg-yellow-500 group-hover:text-white group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-xl shadow-slate-200/50">
+                            {/* Changed border-slate-100 to border-base-300, text-yellow-500 to text-primary, and shadow-slate to shadow-black/20 */}
+                            <div className="w-24 h-24 rounded-3xl border-2 border-base-300 flex items-center justify-center bg-secondary text-primary mb-6 group-hover:bg-primary group-hover:text-secondary group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-xl shadow-black/10">
                                 {React.cloneElement(step.icon, { size: 38 })}
                             </div>
 
                             {/* Step Number */}
+                            {/* Kept bg-secondary and text-white as they work well in both themes */}
                             <div className="bg-secondary text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold mb-4 shadow-lg">
                                 {step.id}
                             </div>
 
                             {/* Text */}
-                            <h3 className="text-xl font-bold mb-2">
+                            {/* Changed text color to text-base-content */}
+                            <h3 className="text-xl font-bold mb-2 text-base-content">
                                 {step.title}
                             </h3>
-                            <p className="text-slate-500 text-sm px-4 leading-relaxed">
+                            {/* Changed text-slate-500 to opacity-70 text-base-content */}
+                            <p className="text-base-content opacity-70 text-sm px-4 leading-relaxed">
                                 {step.desc}
                             </p>
                         </div>

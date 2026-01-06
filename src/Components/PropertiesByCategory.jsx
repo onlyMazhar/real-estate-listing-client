@@ -27,34 +27,34 @@ const categories = [
 
 const PropertiesByCategory = () => {
     return (
-        <div className="pt-26   px-4 md:px-0 pb-10">
+        <div className="pt-26 px-4 md:px-0 pb-10">
             <div className=" mx-auto">
-                <div className="flex justify-between items-center   pb-4">
+                <div className="flex justify-between items-center pb-4">
                     <div>
-                        <h2 className="text-xl md:text-3xl  font-bold text-gray-900 mb-2">
+                        <h2 className="text-xl md:text-3xl font-bold text-base-content mb-2">
                             By Category
                         </h2>
-                        <p className="text-gray-500 text-sm">
-                            Explore  based on property types
+                        <p className="opacity-70 text-base-content text-sm">
+                            Explore based on property types
                         </p>
                     </div>
-                    <Link to="/allproperties" className="text-gray-800 font-semibold flex items-center text-sm gap-1 hover:text-yellow-600 transition">
+                    <Link to="/allproperties" className="text-base-content font-semibold flex items-center text-sm gap-1 hover:text-primary transition">
                         See All <MdOutlineArrowOutward />
                     </Link>
                 </div>
 
                 {/* Category Grid */}
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center  ">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
                     {categories.map((p) => (
-                        <div key={p.name} className="flex flex-col xl:flex-row  items-center gap-4 bg-white rounded-md p-4 hover:shadow-md transition cursor-pointer" >
+                        <div key={p.name} className="flex flex-col xl:flex-row items-center gap-4 bg-base-200 rounded-md p-4 hover:shadow-md transition cursor-pointer" >
                             <img
                                 src={p.image}
                                 alt={p.name}
                                 className="w-32 h-32 rounded-md object-cover mb-3"
                             />
                             <div className="text-center xl:text-left">
-                                <h3 className="text-gray-900 font-semibold">{p.name}</h3>
-                                <p className="text-gray-500 text-sm">
+                                <h3 className="text-base-content font-semibold">{p.name}</h3>
+                                <p className="opacity-60 text-base-content text-sm">
                                     {p.properties}{" "}
                                     {p.properties === 1 ? "Property" : "Properties"}
                                 </p>

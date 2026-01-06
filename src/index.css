@@ -1,33 +1,45 @@
 /* Popins */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
 @import "tailwindcss";
 
-
+/* 1. Define Themes */
 @plugin "daisyui" {
-  themes: light --default;
+  themes: light --default, dark;
 }
 
+/* 2. Custom Light Theme (Your existing colors) */
 @plugin "daisyui/theme" {
   name: "light";
   default: true;
-  --color-primary: #FFAC12; /* btn yellow color */
-  --color-secondary: #0D1C39;
+  --color-primary: #FFAC12;    /* Your Yellow */
+  --color-secondary: #0D1C39;  /* Your Navy */
+  --bg-base-100: #F3F4F6;      /* Your Light Gray BG */
+  --bg-base-content: #1f2937;  /* Dark Text for light mode */
+}
+
+/* 3. Custom Dark Theme (Optimized for your brand) */
+@plugin "daisyui/theme" {
+  name: "dark";
+  --color-primary: #FFAC12;    /* Keep your Yellow accent */
+  --color-secondary: #1E293B;  /* Lighter Navy for cards/nav */
+  --bg-base-100: #0B1120;      /* Deep Midnight Background */
+  --bg-base-content: #E5E7EB;  /* Soft White Text */
+  --color-neutral: #1f2937;    /* Subtle borders/dividers */
+}
+
+/* 4. Global Styles */
+:root {
+  --toastify-color-success: #FFAC12;
 }
 
 body {
   font-family: "Poppins", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  background-color: #F3F4F6;
+  /* Use CSS variables so they flip automatically */
+  background-color: var(--bg-base-100);
+  color: var(--bg-base-content);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
-
-/* nav a{
-  padding: 0 4px;
-} */
 
 nav a.active {
-
- border-bottom: 4px solid #FFAC12;
+  border-bottom: 4px solid #FFAC12;
 }
-

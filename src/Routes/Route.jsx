@@ -14,30 +14,35 @@ import Update from "../Pages/Update";
 import MyPropertiesSkeleton from "../Pages/MyPropertiesSkeleton";
 import Dashboard from "../Pages/Admin/Dashboard";
 import Profile from "../Pages/Admin/Profile";
+import { RefreshCcwDot } from "lucide-react";
+import PostedProperties from "../Pages/Admin/PostedProperties";
+import AllUsers from "../Pages/Admin/AllUsers";
+import AdminRoute from "../Pages/Admin/AdminRoute";
 
-//https://real-estate-listing-server.vercel.app
+//https://localhost:3000
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <MainLayout />,
+        hydrateFallbackElement: <div className='min-h-screen flex items-center justify-center bg-base-100'>
+            <p className='text-5xl text-base-content flex justify-center items-center font-bold tracking-widest'>L<span className='animate-spin mx-1'><RefreshCcwDot size={40} className="transform scale-x-[-1] text-primary" /></span>ADING... </p>
+        </div>,
         children: [
             {
                 index: true,
                 element: <Home />,
-                loader: () => fetch('https://real-estate-listing-server.vercel.app/latest-property')
+                loader: () => fetch(`${import.meta.env.VITE_API_LINK}/latest-property`)
             },
             {
                 path: '/allproperties',
                 element: <AllProperties />,
-                loader: () => fetch('https://real-estate-listing-server.vercel.app/lists')
+                loader: () => fetch(`${import.meta.env.VITE_API_LINK}/lists`)
             },
             {
                 path: '/allproperties/:id',
-                element: <PrivateRoute>
-                    <PropertyDetails />
-                </PrivateRoute>,
-                loader: ({ params }) => fetch(`https://real-estate-listing-server.vercel.app/lists/${params.id}`)
+                element: <PropertyDetails />,
+                loader: ({ params }) => fetch(`${import.meta.env.VITE_API_LINK}/lists/${params.id}`)
             },
             {
                 path: '/addpropertie',
@@ -50,7 +55,7 @@ const router = createBrowserRouter([
                 element: <PrivateRoute skeleton={MyPropertiesSkeleton}>
                     <MyProperties />
                 </PrivateRoute>,
-                loader: () => fetch(`https://real-estate-listing-server.vercel.app/lists`)
+                loader: () => fetch(`${import.meta.env.VITE_API_LINK}/lists`)
             },
 
             // {
@@ -64,7 +69,7 @@ const router = createBrowserRouter([
                 element: <PrivateRoute>
                     <Update />
                 </PrivateRoute>,
-                loader: ({ params }) => fetch(`https://real-estate-listing-server.vercel.app/lists/${params.id}`)
+                loader: ({ params }) => fetch(`${import.meta.env.VITE_API_LINK}/lists/${params.id}`)
 
             },
             {
@@ -89,8 +94,23 @@ const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                path: '/dashboard/profile',
-                element: <Profile />,
+                element: <Profile />
+            },
+            {
+                path: 'profile',
+                element: <Profile />
+            },
+            {
+                path: 'all-posted-property',
+                element: <AdminRoute>
+                    <PostedProperties />
+                </AdminRoute>
+            },
+            {
+                path: 'all-users',
+                element: <AdminRoute>
+                    <AllUsers />
+                </AdminRoute>
             }
         ]
 

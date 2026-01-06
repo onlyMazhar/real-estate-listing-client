@@ -47,58 +47,56 @@ const testimonials = [
 
 const Testimonials = () => {
     return (
-         
-            <div className="py-20">
-                <div className=" mx-auto px-4 md:px-0">
-                    {/* Header */}
-                    <div className="text-center mb-16">
-                        <h2 className="text-4xl font-extrabold mb-4">
-                            People Love Living with HomeNest
-                        </h2>
-                        <p className="text-gray-400 max-w-2xl mx-auto">
-                            Real stories from people who found their perfect home through us.
-                        </p>
-                    </div>
 
-                    {/* Testimonials Grid */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                        {testimonials.map((t, index) => (
-                            <div
-                                key={index}
-                                className="bg-white p-6 rounded-md   hover:scale-105 transition-all duration-300 shadow-md hover:shadow-xl "
-                            >
-                                <h4 className="font-semibold text-lg mb-2 text-gray-900">
-                                    {t.title}
-                                </h4>
-                                <p className="text-gray-600 text-sm leading-relaxed mb-4">
-                                    “{t.review}”
-                                </p>
+        <div className="py-20">
+            <div className=" mx-auto px-4 md:px-0">
+                {/* Header */}
+                <div className="text-center mb-16">
+                    <h2 className="text-4xl font-extrabold mb-4 text-base-content">
+                        People Love Living with HomeNest
+                    </h2>
+                    <p className="text-base-content opacity-70 max-w-2xl mx-auto">
+                        Real stories from people who found their perfect home through us.
+                    </p>
+                </div>
 
-                                {/* Rating */}
-                                <div className="flex text-[#FFAC12] mb-4">
-                                    {[...Array(t.rating)].map((_, i) => (
-                                        <FaStar key={i} />
-                                    ))}
-                                </div>
+                {/* Testimonials Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    {testimonials.map((t, index) => (
+                        <div
+                            key={index}
+                            className="bg-base-100 border border-base-200 p-6 rounded-md hover:scale-105 transition-all duration-300 shadow-md hover:shadow-xl"
+                        >
+                            <h4 className="font-semibold text-lg mb-2 text-base-content">
+                                {t.title}
+                            </h4>
+                            <p className="text-base-content opacity-80 text-sm leading-relaxed mb-4">
+                                “{t.review}”
+                            </p>
 
-                                {/* User Info */}
-                                <div className="flex items-center gap-3 border-t border-gray-100 pt-4">
-                                    <img
-                                        src={t.image}
-                                        alt={t.name}
-                                        className="w-10 h-10 rounded-full object-cover"
-                                    />
-                                    <div>
-                                        <h5 className="font-semibold text-gray-900">{t.name}</h5>
-                                        <p className="text-gray-500 text-sm">{t.role}</p>
-                                    </div>
+                            <div className="flex text-primary mb-4">
+                                {[...Array(t.rating)].map((_, i) => (
+                                    <FaStar key={i} />
+                                ))}
+                            </div>
+
+                            <div className="flex items-center gap-3 border-t border-base-200 pt-4">
+                                <img
+                                    src={t.image}
+                                    alt={t.name}
+                                    className="w-10 h-10 rounded-full object-cover"
+                                />
+                                <div>
+                                    <h5 className="font-semibold text-base-content">{t.name}</h5>
+                                    <p className="text-base-content opacity-60 text-sm">{t.role}</p>
                                 </div>
                             </div>
-                        ))}
-                    </div>
+                        </div>
+                    ))}
                 </div>
             </div>
-         
+        </div>
+
     );
 };
 

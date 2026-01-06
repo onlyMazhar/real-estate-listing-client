@@ -3,82 +3,85 @@ import { Link, useLocation, useNavigate } from "react-router";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../Context/AuthContext";
 import { Bounce, toast } from "react-toastify";
+import { useForm } from 'react-hook-form';
+import { addOrUpdate } from "../Utils";
 
 const Registration = () => {
     // const [error, setError] = useState("");
     const [showPassword, setShowPassword] = useState(false);
     const location = useLocation();
     const navigate = useNavigate()
+    const { register, handleSubmit, formState: { errors } } = useForm()
+
+    const emailRegex =
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    const passwordRegex =
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
 
     const { loginUser, loginWithGooGle } = use(AuthContext)
 
-    const handleLogin = (e) => {
-        e.preventDefault();
-        const email = e.target.email.value;
-        const password = e.target.password.value;
+    const handleLogin = async (data) => {
+        console.log(data)
+        const { email, password } = data;
 
-        loginUser(email, password)
-            .then(() => {
-                navigate(location?.state || '/')
-                toast.success('Login Successfull!', {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: false,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "colored",
-                    transition: Bounce,
-                });
+        try {
+            const result = await loginUser(email, password)
+            const user = result.user
+
+            // save || update user in DB
+            await addOrUpdate({
+                email: user.email,
+                name: user.displayName,
+                image: user.photoURL
             })
-            .catch(err => {
-                toast.error(`${err.message}`, {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: false,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                    transition: Bounce,
-                });
+            toast.success('Login Successfull', {
+                position: "top-center",
+                autoClose: 2000
             })
+            navigate(location?.state || '/')
+        }
+        catch (err) {
+            console.error(err)
+            toast.error('Invalid email or password');
+        }
+
 
         // console.log(email, password);
     };
-    const handleGoogleSignIN = () => {
-        loginWithGooGle()
-            .then(() => {
-                // console.log(result.user)
-                navigate(location?.state || '/')
-                toast.success('Login Successfull!', {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: false,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "colored",
-                    transition: Bounce,
-                });
+
+    const handleGoogleSignIN = async () => {
+        try {
+            const result = await loginWithGooGle()
+            const user = await result.user
+
+            await addOrUpdate({
+                email: user.email,
+                name: user.displayName,
+                image: user.photoURL,
+                createdAt: new Date()
             })
-            .catch(error => {
-                // console.log(error)
-                toast.error(`${error.message}`, {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: false,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                    transition: Bounce,
-                });
+            toast.success('Login Successfull', {
+                position: "top-center",
+                autoClose: 2000
             })
+
+            navigate(location?.state || '/')
+        }
+        catch (err) {
+            // console.log(error)
+            toast.error(`${err.message}`, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+            });
+        }
     }
 
 
@@ -93,30 +96,45 @@ const Registration = () => {
                     </div>
 
                     {/* Form */}
-                    <form onSubmit={handleLogin} className="space-y-6">
+                    <form onSubmit={handleSubmit(handleLogin)} className="space-y-6">
                         {/* Email */}
                         <div className="form-control">
                             <label className="label font-semibold text-gray-700">Email</label>
                             <input
-                                name="email"
+                                {...register("email", {
+                                    required: "Email is required",
+                                    pattern: {
+                                        value: emailRegex,
+                                        message: "Enter valid email formet"
+                                    }
+                                })}
+                                value={"admin.john.doe@gmail.com"}
                                 type="email"
                                 placeholder="example@email.com"
                                 className="input input-bordered w-full bg-gray-50 border-gray-300 focus:ring-2 focus:ring-yellow-400"
-                                required
+
                             />
                         </div>
+                        {errors.email && (<p className="text-sm text-red-500">{errors.email.message}</p>)}
 
                         {/* Password */}
                         <div className="form-control">
                             <label className="label font-semibold text-gray-700">Password</label>
                             <div className="relative">
                                 <input
-                                    name="password"
+                                    {...register("password", {
+                                        required: "Pleas enter currect password",
+                                        pattern: {
+                                            value: passwordRegex,
+                                            message: "Password must be at least 6 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character."
+                                        }
+                                    })}
+                                    value={"@Dminj0n"}
                                     type={showPassword ? "text" : "password"}
                                     placeholder="Enter password"
                                     className="input input-bordered w-full bg-gray-50 border-gray-300 focus:ring-2 focus:ring-yellow-400 pr-10"
-                                    required
                                 />
+                                {errors.password && (<p className="text-sm text-red-500"> {errors.password.message} </p>)}
                                 <div
                                     className="absolute right-3 top-3.5 text-gray-500 cursor-pointer"
                                     onClick={() => setShowPassword(!showPassword)}

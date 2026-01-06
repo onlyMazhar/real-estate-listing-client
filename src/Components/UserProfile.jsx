@@ -14,8 +14,8 @@ const UserProfile = () => {
             .then(() => {
                 // console.log(result.user)
                 toast.success('Logout Successfull!', {
-                    position: "top-right",
-                    autoClose: 5000,
+                    position: "top-center",
+                    autoClose: 2000,
                     hideProgressBar: false,
                     closeOnClick: false,
                     pauseOnHover: true,
@@ -29,8 +29,8 @@ const UserProfile = () => {
             .catch(error => {
                 // console.log(error)
                 toast.error(`${error.message}`, {
-                    position: "top-right",
-                    autoClose: 5000,
+                    position: "top-center",
+                    autoClose: 2000,
                     hideProgressBar: false,
                     closeOnClick: false,
                     pauseOnHover: true,
@@ -56,7 +56,7 @@ const UserProfile = () => {
                         </div>
                         <ul
                             tabIndex="-1"
-                            className=" menu menu-sm border rounded-md border-primary dropdown-content bg-white/30 backdrop-blur-sm text-black z-1 mt-38  p-2 ">
+                            className=" menu menu-sm border rounded-md min-w-50 border-primary dropdown-content bg-white/30 backdrop-blur-sm text-black z-1 mt-38  p-2 ">
                             <div className='px-1 pb-3'>
                                 <h3>{user.displayName}</h3>
                                 {/* <h3>User displayName</h3> */}

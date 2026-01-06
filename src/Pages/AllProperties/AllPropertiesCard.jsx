@@ -15,20 +15,21 @@ const AllPropertiesCard = ({ list }) => {
 
             <div className="  w-full relavent rounded-md hover:scale-103 transition-transform duration-400  h-full flex flex-col justify-between  max-w-sm mx-auto ">
                 <p className=" absolute ml-2 mt-2 badge   rounded-md text-sm capetalize">{category}</p>
-                {/* Thumbnail */}
-                <img
+                 <img
                     src={image}
                     alt={property_name}
                     className="w-full rounded-md h-56 object-cover mb-2"
                 />
                 <div>
-                    <h3 className="text-xl font-semibold text-gray-800">{property_name}</h3>
+                     <h3 className="text-xl font-semibold text-base-content">{property_name}</h3>
                 </div>
 
-                <div className='flex flex-col'>
-                    {/* Info */}
-                        <p className="text-yellow-600 font-bold text-[.75rem] ">${price}</p>
-                        <p className="text-gray-500  text-[.75rem] flex items-center"> <FaLocationDot /> {location}</p>
+                <div className='flex gap-3'>
+                     <p className="text-primary font-bold text-[.75rem]">${price}</p>
+
+                     <p className="text-base-content opacity-70 text-[.75rem] flex items-center gap-1">
+                        <FaLocationDot /> {location}
+                    </p>
                 </div>
             </div>
         </Link>

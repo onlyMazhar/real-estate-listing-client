@@ -24,7 +24,7 @@ const AddPropertie = () => {
             posted_date: new Date()
 
         }
-        fetch('https://real-estate-listing-server.vercel.app/lists', {
+        fetch('https://localhost:3000/lists', {
             method: "POST",
             headers: {
                 "Content-type": "application/json",
@@ -177,13 +177,12 @@ const AddPropertie = () => {
         //     </div>
         // </Container>
         <Container>
-            <div className=" px-4 pt-36 py-6 md:py-12  ">
-                <div className="w-full mt-14 mx-auto max-w-5xl bg-white shadow-sm border border-gray-100 rounded-md overflow-hidden">
+            <div className=" px-4 pt-36 py-6 md:py-12">
+                <div className="w-full mt-14 mx-auto max-w-5xl bg-base-100 shadow-sm border border-base-300 rounded-md overflow-hidden">
 
-                    {/* Header */}
-                    <div className="p-8 border-b border-gray-50 bg-gray-50/30">
-                        <h1 className="text-3xl font-bold text-gray-800">Add a New Property</h1>
-                        <p className="text-gray-500 text-sm mt-2">
+                     <div className="p-8 border-b border-base-300 bg-base-200/50">
+                        <h1 className="text-3xl font-bold text-base-content">Add a New Property</h1>
+                        <p className="text-base-content opacity-60 text-sm mt-2">
                             Fill in the details below to list your property.
                         </p>
                     </div>
@@ -194,50 +193,50 @@ const AddPropertie = () => {
                             {/* Left Column */}
                             <div className="space-y-6">
                                 <div className="form-control">
-                                    <label className="label font-semibold text-gray-700">Property Name</label>
+                                    <label className="label font-semibold text-base-content opacity-80">Property Name</label>
                                     <input
                                         type="text"
                                         name="name"
                                         placeholder="Enter property name"
-                                        className="input input-bordered w-full bg-gray-50 border-gray-300 focus:border-yellow-400"
+                                         className="input input-bordered w-full bg-base-200 border-base-300 text-base-content focus:border-primary"
                                         required
                                     />
                                 </div>
 
                                 <div className="form-control">
-                                    <label className="label font-semibold text-gray-700">Location</label>
+                                    <label className="label font-semibold text-base-content opacity-80">Location</label>
                                     <input
                                         type="text"
                                         name="location"
                                         placeholder="City, Area, or Address"
-                                        className="input input-bordered w-full bg-gray-50 border-gray-300 focus:border-yellow-400"
+                                        className="input input-bordered w-full bg-base-200 border-base-300 text-base-content focus:border-primary"
                                         required
                                     />
                                 </div>
 
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className="form-control">
-                                        <label className="label font-semibold text-gray-700">Category</label>
+                                        <label className="label font-semibold text-base-content opacity-80">Category</label>
                                         <select
                                             name="category"
-                                            className="select select-bordered w-full bg-gray-50 border-gray-300 focus:border-yellow-400"
+                                            className="select select-bordered w-full bg-base-200 border-base-300 text-base-content focus:border-primary"
                                             defaultValue=""
                                             required
                                         >
-                                            <option value="" disabled>— Select —</option>
-                                            <option>Rent</option>
-                                            <option>Sale</option>
-                                            <option>Commercial</option>
-                                            <option>Land</option>
+                                            <option value="" disabled className="bg-base-100">— Select —</option>
+                                            <option className="bg-base-100">Rent</option>
+                                            <option className="bg-base-100">Sale</option>
+                                            <option className="bg-base-100">Commercial</option>
+                                            <option className="bg-base-100">Land</option>
                                         </select>
                                     </div>
                                     <div className="form-control">
-                                        <label className="label font-semibold text-gray-700">Price ($)</label>
+                                        <label className="label font-semibold text-base-content opacity-80">Price ($)</label>
                                         <input
                                             type="number"
                                             name="price"
                                             placeholder="Enter price"
-                                            className="input input-bordered w-full bg-gray-50 border-gray-300 focus:border-yellow-400"
+                                            className="input input-bordered w-full bg-base-200 border-base-300 text-base-content focus:border-primary"
                                             required
                                         />
                                     </div>
@@ -247,54 +246,53 @@ const AddPropertie = () => {
                             {/* Right Column */}
                             <div className="space-y-6">
                                 <div className="form-control">
-                                    <label className="label font-semibold text-gray-700">Thumbnail Image Link</label>
+                                    <label className="label font-semibold text-base-content opacity-80">Thumbnail Image Link</label>
                                     <input
                                         type="url"
                                         name="image"
                                         placeholder="Paste image URL"
-                                        className="input input-bordered w-full bg-gray-50 border-gray-300 focus:border-yellow-400"
+                                        className="input input-bordered w-full bg-base-200 border-base-300 text-base-content focus:border-primary"
                                         required
                                     />
                                 </div>
 
                                 <div className="form-control">
-                                    <label className="label font-semibold text-gray-700">Description</label>
+                                    <label className="label font-semibold text-base-content opacity-80">Description</label>
                                     <textarea
                                         name="description"
                                         placeholder="Write a short description..."
                                         rows="5"
-                                        className="textarea textarea-bordered w-full bg-gray-50 border-gray-300 focus:border-yellow-400"
+                                        className="textarea textarea-bordered w-full bg-base-200 border-base-300 text-base-content focus:border-primary"
                                         required
                                     ></textarea>
                                 </div>
                             </div>
 
-                            {/* Full Width Bottom Section */}
-                            <div className="md:col-span-2 pt-4 border-t border-gray-100 mt-4">
+                            <div className="md:col-span-2 pt-4 border-t border-base-300 mt-4">
                                 <div className="flex flex-col md:flex-row gap-6 mb-8">
                                     <div className="form-control flex-1">
-                                        <label className="label font-semibold text-gray-700">User Name</label>
+                                        <label className="label font-semibold text-base-content opacity-80">User Name</label>
                                         <input
                                             value={user.displayName || ""}
                                             type="text"
                                             readOnly
-                                            className="input input-bordered w-full bg-gray-100 border-gray-200 cursor-not-allowed text-gray-500"
+                                            className="input input-bordered w-full bg-base-300 border-base-300 cursor-not-allowed text-base-content opacity-60"
                                         />
                                     </div>
                                     <div className="form-control flex-1">
-                                        <label className="label font-semibold text-gray-700">User Email</label>
+                                        <label className="label font-semibold text-base-content opacity-80">User Email</label>
                                         <input
                                             value={user.email}
                                             type="email"
                                             readOnly
-                                            className="input input-bordered w-full bg-gray-100 border-gray-200 cursor-not-allowed text-gray-500"
+                                            className="input input-bordered w-full bg-base-300 border-base-300 cursor-not-allowed text-base-content opacity-60"
                                         />
                                     </div>
                                 </div>
 
                                 <button
                                     type="submit"
-                                    className="btn bg-yellow-400 hover:bg-yellow-500 text-black font-bold w-full md:w-max md:px-12 text-lg border-none transition-all"
+                                    className="btn bg-primary hover:bg-yellow-500 text-secondary font-bold w-full md:w-max md:px-12 text-lg border-none transition-all"
                                 >
                                     Add Property
                                 </button>

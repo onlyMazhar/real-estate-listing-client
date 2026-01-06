@@ -15,7 +15,7 @@ const MyProperties = () => {
     useEffect(() => {
         setPageLoading(true);
 
-        fetch(`https://real-estate-listing-server.vercel.app/myProperties?email=${user.email}`)
+        fetch(`https://localhost:3000/myProperties?email=${user.email}`)
             .then((res) => res.json())
             .then((data) => {
                 setMyProperties(data);
@@ -38,7 +38,7 @@ const MyProperties = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`https://real-estate-listing-server.vercel.app/lists/${id}`, {
+                fetch(`https://localhost:3000/lists/${id}`, {
                     method: "DELETE",
                     headers: { "Content-Type": "application/json" }
                 })
@@ -56,16 +56,17 @@ const MyProperties = () => {
     return (
         <Container>
             <div className="pt-24">
-                <h2 className="text-3xl font-bold text-gray-800 text-center mb-8">
+                {/* Swapped gray-800 for base-content */}
+                <h2 className="text-3xl font-bold text-base-content text-center mb-8">
                     My Property Listings
                 </h2>
 
                 {/* ================= LOADING STATE ================= */}
-                {pageLoading && <MyPropertiesSkeleton/>}
+                {pageLoading && <MyPropertiesSkeleton />}
 
                 {/* ================= EMPTY STATE ================= */}
                 {!pageLoading && myProperties.length === 0 && (
-                    <p className="text-center text-gray-500">
+                    <p className="text-center text-base-content opacity-60">
                         You haven’t posted any properties yet.
                     </p>
                 )}
@@ -74,8 +75,10 @@ const MyProperties = () => {
                 {!pageLoading && myProperties.length > 0 && (
                     <>
                         <div className="hidden lg:block overflow-x-auto">
-                            <table className="table w-full border border-gray-200 shadow-sm">
-                                <thead className="bg-gray-100 text-gray-700">
+                            {/* Changed border-gray-200 to border-base-300 */}
+                            <table className="table w-full border border-base-300 shadow-sm">
+                                {/* Changed bg-gray-100 to bg-base-200 and text-gray-700 to base-content */}
+                                <thead className="bg-base-200 text-base-content">
                                     <tr>
                                         <th className="p-3 text-left">Property Name</th>
                                         <th className="p-3 text-left">Category</th>
@@ -87,32 +90,34 @@ const MyProperties = () => {
                                 </thead>
                                 <tbody>
                                     {myProperties.map((property) => (
-                                        <tr key={property._id} className="border-t hover:bg-gray-50">
-                                            <td className="p-3 font-medium text-gray-800">
+                                        /* Changed border-t to border-base-200 and hover:bg-gray-50 to hover:bg-base-200/50 */
+                                        <tr key={property._id} className="border-t border-base-200 hover:bg-base-200/50 transition-colors">
+                                            <td className="p-3 font-medium text-base-content">
                                                 {property.property_name}
                                             </td>
-                                            <td className="p-3">{property.category}</td>
-                                            <td className="p-3 text-yellow-600 font-semibold">
+                                            <td className="p-3 text-base-content opacity-80">{property.category}</td>
+                                            {/* Changed yellow-600 to text-primary */}
+                                            <td className="p-3 text-primary font-semibold">
                                                 ${property.price}
                                             </td>
-                                            <td className="p-3">{property.location}</td>
-                                            <td className="p-3">
+                                            <td className="p-3 text-base-content opacity-80">{property.location}</td>
+                                            <td className="p-3 text-base-content opacity-80">
                                                 {new Date(property.posted_date).toLocaleDateString()}
                                             </td>
-                                            <td className="p-3 flex justify-center gap-2">
+                                            <td className="p-3 flex justify-center gap-4">
                                                 <Link title="Update Info" to={`/update/${property._id}`}>
-                                                    <SquarePen className="text-yellow-500 hover:text-yellow-600" size={18} />
+                                                    <SquarePen className="text-primary hover:scale-110 transition-transform" size={18} />
                                                 </Link>
                                                 <button
                                                     onClick={() => handleDelete(property._id)}
                                                     title="Delete Property"
                                                 >
                                                     <Trash
-                                                        className="text-red-500 cursor-pointer hover:text-red-60  "
+                                                        className="text-error cursor-pointer hover:scale-110 transition-transform"
                                                         size={18} />
                                                 </button>
                                                 <Link title="Details" to={`/allproperties/${property._id}`}>
-                                                    <Info className="text-yellow-500 hover:text-yellow-600" size={20} />
+                                                    <Info className="text-info hover:scale-110 transition-transform" size={20} />
                                                 </Link>
                                             </td>
                                         </tr>
@@ -122,38 +127,34 @@ const MyProperties = () => {
                         </div>
 
                         {/* ================= MOBILE CARDS ================= */}
-                        <div className="lg:hidden   grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="lg:hidden grid grid-cols-1 md:grid-cols-2 gap-6">
                             {myProperties.map((property) => (
                                 <div
                                     key={property._id}
-                                    className="border border-gray-200 bg-white rounded-md p-4"
+                                    /* Swapped bg-white for bg-base-100 and border-gray-200 for border-base-300 */
+                                    className="border border-base-300 bg-base-100 rounded-md p-4 shadow-sm"
                                 >
-                                    <h3 className="font-semibold text-gray-800">
+                                    <h3 className="font-semibold text-base-content">
                                         {property.property_name}
                                     </h3>
-                                    <p className="text-sm">Category: {property.category}</p>
-                                    <p className="text-sm text-yellow-600 font-semibold">
+                                    <p className="text-sm text-base-content opacity-70">Category: {property.category}</p>
+                                    <p className="text-sm text-primary font-semibold">
                                         Price: ${property.price}
                                     </p>
-                                    <p className="text-sm">Location: {property.location}</p>
-                                    <p className="text-sm">
+                                    <p className="text-sm text-base-content opacity-70">Location: {property.location}</p>
+                                    <p className="text-sm text-base-content opacity-70">
                                         Posted: {new Date(property.posted_date).toLocaleDateString()}
                                     </p>
 
-                                    <div className="flex gap-2 mt-3">
+                                    <div className="flex gap-4 mt-4 pt-3 border-t border-base-200">
                                         <Link title="Update Info" to={`/update/${property._id}`}>
-                                            <SquarePen className="text-yellow-500 hover:text-yellow-600" size={18} />
+                                            <SquarePen className="text-primary" size={20} />
                                         </Link>
-                                        <button
-                                            onClick={() => handleDelete(property._id)}
-                                            title="Delete Property"
-                                        >
-                                            <Trash
-                                                className="text-red-500 cursor-pointer hover:text-red-60  "
-                                                size={18} />
+                                        <button onClick={() => handleDelete(property._id)}>
+                                            <Trash className="text-error" size={20} />
                                         </button>
                                         <Link title="Details" to={`/allproperties/${property._id}`}>
-                                            <Info className="text-yellow-500 hover:text-yellow-600" size={20} />
+                                            <Info className="text-info" size={22} />
                                         </Link>
                                     </div>
                                 </div>
