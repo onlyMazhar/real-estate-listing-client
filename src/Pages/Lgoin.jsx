@@ -108,7 +108,7 @@ const Registration = () => {
                                         message: "Enter valid email formet"
                                     }
                                 })}
-                                value={"admin.john.doe@gmail.com"}
+                                defaultValue={"admin.john.doe@gmail.com"}
                                 type="email"
                                 placeholder="example@email.com"
                                 className="input input-bordered w-full bg-gray-50 border-gray-300 focus:ring-2 focus:ring-yellow-400"
@@ -129,7 +129,7 @@ const Registration = () => {
                                             message: "Password must be at least 6 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character."
                                         }
                                     })}
-                                    value={"@Dminj0n"}
+                                    defaultValue={"@Dminj0n"}
                                     type={showPassword ? "text" : "password"}
                                     placeholder="Enter password"
                                     className="input input-bordered w-full bg-gray-50 border-gray-300 focus:ring-2 focus:ring-yellow-400 pr-10"
