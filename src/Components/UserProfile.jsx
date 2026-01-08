@@ -67,7 +67,7 @@ const UserProfile = () => {
                             <p onClick={handleLogout} className='p-1 flex text-red-500 rounded-md hover:bg-red-100 items-center gap-2 cursor-pointer hover text-left'> <LogOutIcon size={14} /> Logout</p>
                         </ul>
                     </>
-                    : <div className='space-x-4'>
+                    : <div className='space-x-4 flex '>
                         <Link to={'/login'}>
                             <button className='btn btn-primary text-secondary' >Login</button>
                         </Link>

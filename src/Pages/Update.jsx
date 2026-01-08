@@ -23,7 +23,7 @@ const Update = () => {
             image: e.target.image.value,
         };
 
-        fetch(`https://localhost:3000/lists/${property._id}`, {
+        fetch(`${import.meta.env.VITE_API_LINK}/lists/${property._id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(propertyData)

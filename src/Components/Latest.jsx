@@ -6,7 +6,7 @@ import { MdOutlineArrowOutward } from 'react-icons/md';
 import PropertiesByCategory from './PropertiesByCategory';
 
 const Latest = ({ data }) => {
-    // console.log(data)
+    console.log(data)
     return (
         <>
             <PropertiesByCategory />

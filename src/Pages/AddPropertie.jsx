@@ -24,7 +24,7 @@ const AddPropertie = () => {
             posted_date: new Date()
 
         }
-        fetch('https://localhost:3000/lists', {
+        fetch(`${import.meta.env.VITE_API_LINK}/lists`, {
             method: "POST",
             headers: {
                 "Content-type": "application/json",

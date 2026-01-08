@@ -15,7 +15,7 @@ const MyProperties = () => {
     useEffect(() => {
         setPageLoading(true);
 
-        fetch(`https://localhost:3000/myProperties?email=${user.email}`)
+        fetch(`${import.meta.env.VITE_API_LINK}/myProperties?email=${user.email}`)
             .then((res) => res.json())
             .then((data) => {
                 setMyProperties(data);
@@ -38,7 +38,7 @@ const MyProperties = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`https://localhost:3000/lists/${id}`, {
+                fetch(`${import.meta.env.VITE_API_LINK}/${id}`, {
                     method: "DELETE",
                     headers: { "Content-Type": "application/json" }
                 })
